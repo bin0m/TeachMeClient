@@ -3,15 +3,12 @@ package com.project.levitg.teachmeclient;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -35,7 +32,7 @@ public class StudentDetailActivity extends AppCompatActivity implements android.
         restService = new RestClient();
         setContentView(R.layout.activity_student_detail);
 
-        btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnRegister = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnClose = (Button) findViewById(R.id.btnClose);
 
@@ -90,25 +87,24 @@ public class StudentDetailActivity extends AppCompatActivity implements android.
             finish();
         } else if (v == findViewById(R.id.btnClose)) {
             finish();
-        } else if (findViewById(R.id.btnRegister) == v) {
-
-            Student student = new Student();
-            Integer status = 0;
-            student.setId(_Student_Id);
-            student.setEmail(editTextEmail.getText().toString());
-            student.setFullName(editTextName.getText().toString());
-            student.setLogin(editTextLogin.getText().toString());
-
-            //TODO: Add UI fields
-            student.setPassword("hardcoded Password");
-
-            student.setCompletedOursesCount(0);
-            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            student.setRegisterDate(DATE_FORMAT.format(Calendar.getInstance().getTime()));
-
+        } else if (findViewById(R.id.btnSave) == v) {
 
             if (_Student_Id == null || _Student_Id.isEmpty()) {
                 // No Id -> new student
+
+                Student student = new Student();
+                student.setEmail(editTextEmail.getText().toString());
+                student.setFullName(editTextName.getText().toString());
+                student.setLogin(editTextLogin.getText().toString());
+
+                //TODO: Add UI fields
+                student.setPassword("hardcoded Password");
+
+                student.setCompletedOursesCount(0);
+                SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                student.setRegisterDate(DATE_FORMAT.format(Calendar.getInstance().getTime()));
+
+
                 restService.getService().addStudent(student).enqueue(new Callback<Student>() {
                     @Override
                     public void onResponse(Call<Student> call, Response<Student> response) {
@@ -123,19 +119,37 @@ public class StudentDetailActivity extends AppCompatActivity implements android.
 
 
             } else {
-                //TODO:call update
-//                Call<Student> call = restService.getService().updateStudentById(_Student_Id,student);
-//                call.enqueue(new Callback<Student>() {
-//                    @Override
-//                    public void onResponse(Call<Student> call, Response<Student> response) {
-//                        Toast.makeText(StudentDetailActivity.this, "Student Record updated.", Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<Student> call, Throwable t) {
-//                        Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
-//                    }
-//                });
+                // Update existing student
+
+                Call<Student> call = restService.getService().getStudentById(_Student_Id);
+                call.enqueue(new Callback<Student>() {
+                    @Override
+                    public void onResponse(Call<Student> call, Response<Student> response) {
+                        Student existingStudent = response.body();
+                        existingStudent.setEmail(editTextEmail.getText().toString());
+                        existingStudent.setFullName(editTextName.getText().toString());
+                        existingStudent.setLogin(editTextLogin.getText().toString());
+
+                        // Use Backend API to update student
+                        restService.getService().updateStudentById(_Student_Id, existingStudent).enqueue(new Callback<Student>() {
+                            @Override
+                            public void onResponse(Call<Student> call, Response<Student> response) {
+                                Toast.makeText(StudentDetailActivity.this, response.body().getFullName() + " updated.", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Student> call, Throwable t) {
+                                Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<Student> call, Throwable t) {
+                        Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+
+                    }
+                });
 
 
             }

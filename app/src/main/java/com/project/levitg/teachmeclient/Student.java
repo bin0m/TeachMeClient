@@ -12,35 +12,45 @@ import com.google.gson.annotations.SerializedName;
 public class Student {
 
     @SerializedName("deleted")
-    @Expose
+    @Expose(serialize = false)
     private boolean deleted;
+
     @SerializedName("updatedAt")
-    @Expose
+    @Expose(serialize = false)
     private String updatedAt;
+
     @SerializedName("createdAt")
-    @Expose
+    @Expose(serialize = false)
     private String createdAt;
+
     @SerializedName("version")
-    @Expose
+    @Expose(serialize = false)
     private String version;
+
     @SerializedName("id")
-    @Expose
+    @Expose(serialize = false)
     private String id;
+
     @SerializedName("registerDate")
     @Expose
     private String registerDate;
+
     @SerializedName("completed\u0421oursesCount")
     @Expose
     private int completedOursesCount;
+
     @SerializedName("password")
     @Expose
     private String password;
+
     @SerializedName("login")
     @Expose
     private String login;
+
     @SerializedName("email")
     @Expose
     private String email;
+
     @SerializedName("fullName")
     @Expose
     private String fullName;

@@ -74,8 +74,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/btnRegister"
+        android:text="Save"
+        android:id="@+id/btnSave"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/btnClose" />
 
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:text="Delete"
         android:id="@+id/btnDelete"
-        android:layout_alignTop="@+id/btnRegister"
-        android:layout_toLeftOf="@+id/btnRegister" />
+        android:layout_alignTop="@+id/btnSave"
+        android:layout_toLeftOf="@+id/btnSave" />
 
 </RelativeLayout>

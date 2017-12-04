@@ -6,6 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -34,5 +35,10 @@ public interface BackendService {
     //Delete student record base on ID
     @DELETE("student/{id}")
     Call<Void> deleteStudentById(@Path("id") String id);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/student/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Update student record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("student/{id}")
+    Call<Student> updateStudentById(@Path("id") String id, @Body Student student);
 }
 
