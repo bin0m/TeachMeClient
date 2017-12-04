@@ -68,8 +68,6 @@ public class StudentDetailActivity extends AppCompatActivity implements android.
 
                 }
             });
-
-
         }
     }
 
@@ -77,22 +75,19 @@ public class StudentDetailActivity extends AppCompatActivity implements android.
     @Override
     public void onClick(View v) {
         if (findViewById(R.id.btnDelete) == v) {
-            //TODO:call update
-//            Call<Student> call = restService.getService().deleteStudentById(_Student_Id);
-//            call.enqueue(new Callback<Student>() {
-//                @Override
-//                public void onResponse(Call<Student> call, Response<Student> response) {
-//                    Toast.makeText(StudentDetailActivity.this, "Student Record Deleted", Toast.LENGTH_LONG).show();
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Student> call, Throwable t) {
-//                    Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
-//
-//                }
-//            });
-//            finish();
+            Call<Void> call = restService.getService().deleteStudentById(_Student_Id);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    Toast.makeText(StudentDetailActivity.this, "Student Record Deleted", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+            finish();
         } else if (v == findViewById(R.id.btnClose)) {
             finish();
         } else if (findViewById(R.id.btnRegister) == v) {

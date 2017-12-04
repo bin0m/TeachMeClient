@@ -25,12 +25,16 @@ public class RestClient {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+
+        OkHttpClient okHttpClient = new OkHttpClient
+                .Builder()
+                .addInterceptor(interceptor)
+                .build();
 
         restAdapter = new retrofit2.Retrofit.Builder()
                 .baseUrl(BackendURL)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         backendService = restAdapter.create(BackendService.class);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -29,5 +30,9 @@ public interface BackendService {
     @POST("student")
     Call<Student> addStudent(@Body Student student);
 
+    //i.e. http://teachmebackend.azurewebsites.net/tables/student/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Delete student record base on ID
+    @DELETE("student/{id}")
+    Call<Void> deleteStudentById(@Path("id") String id);
 }
 
