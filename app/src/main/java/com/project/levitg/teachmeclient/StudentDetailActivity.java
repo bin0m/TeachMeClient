@@ -1,13 +1,149 @@
 package com.project.levitg.teachmeclient;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class StudentDetailActivity extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
+public class StudentDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
+
+    Button btnRegister, btnDelete;
+    Button btnClose;
+    EditText editTextName;
+    EditText editTextEmail;
+    EditText editTextLogin;
+    private String _Student_Id;
+    RestClient restService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restService = new RestClient();
         setContentView(R.layout.activity_student_detail);
+
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+        btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnClose = (Button) findViewById(R.id.btnClose);
+
+        editTextName = (EditText) findViewById(R.id.editTextName);
+        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        editTextLogin = (EditText) findViewById(R.id.editTextLogin);
+
+        btnRegister.setOnClickListener(this);
+        btnDelete.setOnClickListener(this);
+        btnClose.setOnClickListener(this);
+
+
+        _Student_Id = "";
+        Intent intent = getIntent();
+        _Student_Id = intent.getStringExtra("student_Id");
+        if (_Student_Id != null && !_Student_Id.isEmpty()) {
+            Call<Student> call = restService.getService().getStudentById(_Student_Id);
+            call.enqueue(new Callback<Student>() {
+                @Override
+                public void onResponse(Call<Student> call, Response<Student> response) {
+                    Student student = response.body();
+                    editTextName.setText(student.getFullName());
+                    editTextEmail.setText(student.getEmail());
+                    editTextLogin.setText(student.getLogin());
+                }
+
+                @Override
+                public void onFailure(Call<Student> call, Throwable t) {
+                    Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+
+                }
+            });
+
+
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if (findViewById(R.id.btnDelete) == v) {
+            //TODO:call update
+//            Call<Student> call = restService.getService().deleteStudentById(_Student_Id);
+//            call.enqueue(new Callback<Student>() {
+//                @Override
+//                public void onResponse(Call<Student> call, Response<Student> response) {
+//                    Toast.makeText(StudentDetailActivity.this, "Student Record Deleted", Toast.LENGTH_LONG).show();
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Student> call, Throwable t) {
+//                    Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+//
+//                }
+//            });
+//            finish();
+        } else if (v == findViewById(R.id.btnClose)) {
+            finish();
+        } else if (findViewById(R.id.btnRegister) == v) {
+
+            Student student = new Student();
+            Integer status = 0;
+            student.setId(_Student_Id);
+            student.setEmail(editTextEmail.getText().toString());
+            student.setFullName(editTextName.getText().toString());
+            student.setLogin(editTextLogin.getText().toString());
+
+            //TODO: Add UI fields
+            student.setPassword("hardcoded Password");
+
+            student.setCompletedOursesCount(0);
+            SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            student.setRegisterDate(DATE_FORMAT.format(Calendar.getInstance().getTime()));
+
+
+            if (_Student_Id == null || _Student_Id.isEmpty()) {
+                // No Id -> new student
+                restService.getService().addStudent(student).enqueue(new Callback<Student>() {
+                    @Override
+                    public void onResponse(Call<Student> call, Response<Student> response) {
+                        Toast.makeText(StudentDetailActivity.this, "New Student Registered.", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Student> call, Throwable t) {
+                        Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+            } else {
+                //TODO:call update
+//                Call<Student> call = restService.getService().updateStudentById(_Student_Id,student);
+//                call.enqueue(new Callback<Student>() {
+//                    @Override
+//                    public void onResponse(Call<Student> call, Response<Student> response) {
+//                        Toast.makeText(StudentDetailActivity.this, "Student Record updated.", Toast.LENGTH_LONG).show();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Student> call, Throwable t) {
+//                        Toast.makeText(StudentDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+//                    }
+//                });
+
+
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Student"
+        android:text="Register Student"
         android:id="@+id/btnAdd"
         android:layout_alignBottom="@+id/listView"
         android:layout_toRightOf="@+id/btnGetAll"

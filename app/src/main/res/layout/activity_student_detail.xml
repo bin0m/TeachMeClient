@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Name"
+        android:text="FullName"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Age"
+        android:text="Login"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
@@ -62,9 +62,9 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editTextAge"
+        android:id="@+id/editTextLogin"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignLeft="@+id/editTextEmail"
         android:layout_alignStart="@+id/editTextEmail"
@@ -74,8 +74,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/btnSave"
+        android:text="Register"
+        android:id="@+id/btnRegister"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/btnClose" />
 
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:text="Delete"
         android:id="@+id/btnDelete"
-        android:layout_alignTop="@+id/btnSave"
-        android:layout_toLeftOf="@+id/btnSave" />
+        android:layout_alignTop="@+id/btnRegister"
+        android:layout_toLeftOf="@+id/btnRegister" />
 
 </RelativeLayout>
