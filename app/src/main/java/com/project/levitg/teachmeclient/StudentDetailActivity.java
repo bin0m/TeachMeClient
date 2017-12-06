@@ -108,7 +108,11 @@ public class StudentDetailActivity extends AppCompatActivity implements android.
                 restService.getService().addStudent(student).enqueue(new Callback<Student>() {
                     @Override
                     public void onResponse(Call<Student> call, Response<Student> response) {
-                        Toast.makeText(StudentDetailActivity.this, "New Student Registered.", Toast.LENGTH_LONG).show();
+                        if (response.code() == 201) {
+                            Toast.makeText(StudentDetailActivity.this, "New Student Registered.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(StudentDetailActivity.this, "Not Created:" + response.errorBody(), Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
