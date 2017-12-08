@@ -18,27 +18,27 @@ import retrofit2.http.Path;
 public interface BackendService {
 
     //i.e. http://teachmebackend.azurewebsites.net/tables/student
-    @GET("student")
-    Call<List<Student>> getStudent();
+    @GET("user")
+    Call<List<User>> getUser();
 
-    //i.e. http://teachmebackend.azurewebsites.net/tables/student/21a1573d-9862-40b1-a179-767fbfc57a8f
-    //Get student record base on ID
-    @GET("student/{id}")
-    Call<Student> getStudentById(@Path("id") String id);
+    //i.e. http://teachmebackend.azurewebsites.net/tables/user/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Get user record base on ID
+    @GET("user/{id}")
+    Call<User> getUserById(@Path("id") String id);
 
-    //i.e. http://teachmebackend.azurewebsites.net/tables/student
-    //Add student record and post content in HTTP request BODY
-    @POST("student")
-    Call<Student> addStudent(@Body Student student);
+    //i.e. http://teachmebackend.azurewebsites.net/tables/user
+    //Add user record and post content in HTTP request BODY
+    @POST("user")
+    Call<User> addUser(@Body User user);
 
-    //i.e. http://teachmebackend.azurewebsites.net/tables/student/21a1573d-9862-40b1-a179-767fbfc57a8f
-    //Delete student record base on ID
-    @DELETE("student/{id}")
-    Call<Void> deleteStudentById(@Path("id") String id);
+    //i.e. http://teachmebackend.azurewebsites.net/tables/user/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Delete user record base on ID
+    @DELETE("user/{id}")
+    Call<Void> deleteUserById(@Path("id") String id);
 
-    //i.e. http://teachmebackend.azurewebsites.net/tables/student/21a1573d-9862-40b1-a179-767fbfc57a8f
-    //Update student record with PATCH (only delta is updated) and post content in HTTP request BODY
-    @PATCH("student/{id}")
-    Call<Student> updateStudentById(@Path("id") String id, @Body Student student);
+    //i.e. http://teachmebackend.azurewebsites.net/tables/user/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Update user record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("user/{id}")
+    Call<User> updateUserById(@Path("id") String id, @Body User user);
 }
 

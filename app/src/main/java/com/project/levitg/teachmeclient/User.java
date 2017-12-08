@@ -9,7 +9,7 @@ import java.util.Date;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Student {
+public class User {
 
     @SerializedName("deleted")
     @Expose(serialize = false)

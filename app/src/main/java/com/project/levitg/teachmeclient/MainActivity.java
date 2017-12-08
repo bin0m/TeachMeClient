@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     ListView listView;
     Button btnGetAll, btnAdd;
     RestClient restClient;
-    TextView student_Id;
+    TextView user_Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     public void onClick(View v) {
         if (v == findViewById(R.id.btnAdd)) {
 
-            Intent intent = new Intent(this, StudentDetailActivity.class);
-            intent.putExtra("student_Id", 0);
+            Intent intent = new Intent(this, UserDetailActivity.class);
+            intent.putExtra("user_Id", 0);
             startActivity(intent);
 
         } else {
@@ -65,22 +65,22 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     }
 
     private void refreshScreen() {
-        //Call to server to grab list of student records. this is a async
-        Call<List<Student>> call = restClient.getService().getStudent();
-        call.enqueue(new Callback<List<Student>>() {
+        //Call to server to grab list of user records. this is a async
+        Call<List<User>> call = restClient.getService().getUser();
+        call.enqueue(new Callback<List<User>>() {
                          @Override
-                         public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                         public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                              ListView lv = (ListView) findViewById(R.id.listView);
 
-                             CustomAdapter customAdapter = new CustomAdapter(MainActivity.this, R.layout.view_student_entry, response.body());
+                             CustomAdapter customAdapter = new CustomAdapter(MainActivity.this, R.layout.view_user_entry, response.body());
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                  @Override
                                  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                     student_Id = (TextView) view.findViewById(R.id.student_Id);
-                                     String studentId = student_Id.getText().toString();
-                                     Intent objIndent = new Intent(getApplicationContext(), StudentDetailActivity.class);
-                                     objIndent.putExtra("student_Id", studentId);
+                                     user_Id = (TextView) view.findViewById(R.id.user_Id);
+                                     String userId = user_Id.getText().toString();
+                                     Intent objIndent = new Intent(getApplicationContext(), UserDetailActivity.class);
+                                     objIndent.putExtra("user_Id", userId);
                                      startActivity(objIndent);
                                  }
                              });
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
                          }
 
                          @Override
-                         public void onFailure(Call<List<Student>> call, Throwable t) {
+                         public void onFailure(Call<List<User>> call, Throwable t) {
                              Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
 
                          }
@@ -98,39 +98,39 @@ public class MainActivity extends AppCompatActivity implements android.view.View
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Student>> call = restClient.getService().getStudent();
-        call.enqueue(new Callback<List<Student>>() {
+        Call<List<User>> call = restClient.getService().getUser();
+        call.enqueue(new Callback<List<User>>() {
                          @Override
-                         public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
+                         public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                              ListView lv = (ListView) findViewById(R.id.listView);
 
 
-                             ArrayList<HashMap<String, String>> studentList = new ArrayList<HashMap<String, String>>();
+                             ArrayList<HashMap<String, String>> userList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-                                 HashMap<String, String> student = new HashMap<String, String>();
-                                 student.put("id", String.valueOf(response.body().get(i).getId()));
-                                 student.put("name", String.valueOf(response.body().get(i).getFullName()));
+                                 HashMap<String, String> user = new HashMap<String, String>();
+                                 user.put("id", String.valueOf(response.body().get(i).getId()));
+                                 user.put("name", String.valueOf(response.body().get(i).getFullName()));
 
-                                 studentList.add(student);
+                                 userList.add(user);
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                  @Override
                                  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                     student_Id = (TextView) view.findViewById(R.id.student_Id);
-                                     String studentId = student_Id.getText().toString();
-                                     Intent objIndent = new Intent(getApplicationContext(), StudentDetailActivity.class);
-                                     objIndent.putExtra("student_Id", studentId);
+                                     user_Id = (TextView) view.findViewById(R.id.user_Id);
+                                     String userId = user_Id.getText().toString();
+                                     Intent objIndent = new Intent(getApplicationContext(), UserDetailActivity.class);
+                                     objIndent.putExtra("user_Id", userId);
                                      startActivity(objIndent);
                                  }
                              });
-                             ListAdapter adapter = new SimpleAdapter(MainActivity.this, studentList, R.layout.view_student_entry, new String[]{"id", "name"}, new int[]{R.id.student_Id, R.id.student_name});
+                             ListAdapter adapter = new SimpleAdapter(MainActivity.this, userList, R.layout.view_user_entry, new String[]{"id", "name"}, new int[]{R.id.user_Id, R.id.user_name});
                              lv.setAdapter(adapter);
                          }
 
                          @Override
-                         public void onFailure(Call<List<Student>> call, Throwable t) {
+                         public void onFailure(Call<List<User>> call, Throwable t) {
                              Toast.makeText(MainActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
 
                          }

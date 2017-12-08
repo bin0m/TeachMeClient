@@ -13,10 +13,10 @@ import java.util.List;
  * Created by Greg L on 04.12.2017.
  */
 
-public class CustomAdapter extends ArrayAdapter<Student> {
+public class CustomAdapter extends ArrayAdapter<User> {
 
-    public CustomAdapter(Context context, int resource, List<Student> student) {
-        super(context, resource, student);
+    public CustomAdapter(Context context, int resource, List<User> user) {
+        super(context, resource, user);
     }
 
     @Override
@@ -26,16 +26,16 @@ public class CustomAdapter extends ArrayAdapter<Student> {
 
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.view_student_entry, parent, false);
+            v = inflater.inflate(R.layout.view_user_entry, parent, false);
         }
 
-        Student student = getItem(position);
+        User user = getItem(position);
 
-        if (student != null) {
-            TextView tvStudentId = (TextView) v.findViewById(R.id.student_Id);
-            TextView tvStudentName = (TextView) v.findViewById(R.id.student_name);
-            tvStudentId.setText(student.getId());
-            tvStudentName.setText(student.getFullName());
+        if (user != null) {
+            TextView tvUserId = (TextView) v.findViewById(R.id.user_Id);
+            TextView tvUserName = (TextView) v.findViewById(R.id.user_name);
+            tvUserId.setText(user.getId());
+            tvUserName.setText(user.getFullName());
         }
 
         return v;
