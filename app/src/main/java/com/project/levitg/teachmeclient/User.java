@@ -55,6 +55,14 @@ public class User {
     @Expose
     private String fullName;
 
+    // UserRoles:
+    // 0 - Student
+    // 1 - Teacher
+    // 2 - Admin
+    @SerializedName("userRole")
+    @Expose
+    private String userRole;
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -141,6 +149,14 @@ public class User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
 
 }

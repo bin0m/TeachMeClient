@@ -99,6 +99,7 @@ public class UserDetailActivity extends AppCompatActivity implements android.vie
 
                 //TODO: Add UI fields
                 user.setPassword("hardcoded Password");
+                user.setUserRole("Student");
 
                 user.setCompletedOursesCount(0);
                 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
