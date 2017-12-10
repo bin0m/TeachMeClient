@@ -14,4 +14,14 @@
         android:text="Users"
         android:paddingLeft="6dip"
         android:paddingTop="6dip" />
+
+    <Button
+        android:id="@+id/btnPatterns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="GoToPatterns"
+        android:text="Patterns"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        app:layout_constraintTop_toBottomOf="@+id/btnUsers" />
 </android.support.constraint.ConstraintLayout>

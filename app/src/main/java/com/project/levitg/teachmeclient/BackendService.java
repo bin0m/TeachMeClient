@@ -40,5 +40,29 @@ public interface BackendService {
     //Update user record with PATCH (only delta is updated) and post content in HTTP request BODY
     @PATCH("user/{id}")
     Call<User> updateUserById(@Path("id") String id, @Body User user);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/student
+    @GET("pattern")
+    Call<List<Pattern>> getPattern();
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/pattern/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Get pattern record base on ID
+    @GET("pattern/{id}")
+    Call<Pattern> getPatternById(@Path("id") String id);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/pattern
+    //Add pattern record and post content in HTTP request BODY
+    @POST("pattern")
+    Call<Pattern> addPattern(@Body Pattern pattern);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/pattern/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Delete pattern record base on ID
+    @DELETE("pattern/{id}")
+    Call<Void> deletePatternById(@Path("id") String id);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/pattern/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Update pattern record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("pattern/{id}")
+    Call<Pattern> updatePatternById(@Path("id") String id, @Body Pattern pattern);
 }
 
