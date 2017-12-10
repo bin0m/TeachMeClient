@@ -31,4 +31,13 @@
         android:layout_toRightOf="@+id/btnGetAll"
         android:layout_toEndOf="@+id/btnGetAll" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to main"
+        android:id="@+id/btnBackToMain"
+        android:layout_alignBottom="@+id/listView"
+        android:layout_toRightOf="@+id/btnAdd"
+        android:layout_toEndOf="@+id/btnAdd" />
+
 </RelativeLayout>

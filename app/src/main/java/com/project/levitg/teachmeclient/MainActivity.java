@@ -24,7 +24,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     ListView listView;
-    Button btnGetAll, btnAdd;
+    Button btnGetAll, btnAdd, btnBackToMain;
     RestClient restClient;
     TextView user_Id;
 
@@ -33,22 +33,30 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         super.onCreate(savedInstanceState);
         restClient = new RestClient();
         setContentView(R.layout.activity_main);
+
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnGetAll.setOnClickListener(this);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
 
-
+        btnBackToMain = (Button) findViewById(R.id.btnBackToMain);
+        btnBackToMain.setOnClickListener(this);
     }
 
     //This function will call when the screen is activate
     @Override
     public void onResume() {
-
         super.onResume();
         refreshScreen();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        refreshScreen();
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -57,10 +65,11 @@ public class MainActivity extends AppCompatActivity implements android.view.View
             Intent intent = new Intent(this, UserDetailActivity.class);
             intent.putExtra("user_Id", 0);
             startActivity(intent);
-
+        } else if (v == findViewById(R.id.btnBackToMain)) {
+            finish();
         } else {
             // You should use refreshScreen() instead, just show you an easier method only :P
-            refreshScreen_SimpleWay();
+            refreshScreen();
         }
     }
 
