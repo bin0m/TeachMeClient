@@ -18,6 +18,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
     Button btnAdd, btnDelete;
     Button btnClose;
     EditText editTextName;
+    EditText editLessonId;
     EditText editTextJson;
     private String _Pattern_Id;
     RestClient restService;
@@ -34,6 +35,8 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextJson = (EditText) findViewById(R.id.editTextJson);
+        editLessonId = (EditText) findViewById(R.id.editLessonId);
+
 
         btnAdd.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
@@ -51,6 +54,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
                     Pattern pattern = response.body();
                     editTextName.setText(pattern.getName());
                     editTextJson.setText(pattern.getJsonText());
+                    editLessonId.setText(pattern.getLessonId());
                 }
 
                 @Override
@@ -89,6 +93,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
                 Pattern pattern = new Pattern();
                 pattern.setJsonText(editTextJson.getText().toString());
                 pattern.setName(editTextName.getText().toString());
+                pattern.setLessonId(editLessonId.getText().toString());
 
                 restService.getService().addPattern(pattern).enqueue(new Callback<Pattern>() {
                     @Override
@@ -117,6 +122,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
                         Pattern existingPattern = response.body();
                         existingPattern.setJsonText(editTextJson.getText().toString());
                         existingPattern.setName(editTextName.getText().toString());
+                        existingPattern.setLessonId(editLessonId.getText().toString());
 
                         // Use Backend API to update pattern
                         restService.getService().updatePatternById(_Pattern_Id, existingPattern).enqueue(new Callback<Pattern>() {

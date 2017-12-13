@@ -37,6 +37,10 @@ public class Pattern {
     @Expose
     private String name;
 
+    @SerializedName("lessonId")
+    @Expose
+    private String lessonId;
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -91,6 +95,14 @@ public class Pattern {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(String lessonId) {
+        this.lessonId = lessonId;
     }
 
 }
