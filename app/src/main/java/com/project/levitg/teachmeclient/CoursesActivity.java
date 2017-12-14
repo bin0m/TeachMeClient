@@ -21,18 +21,19 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class TeachersActivity extends AppCompatActivity implements android.view.View.OnClickListener {
+public class CoursesActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     ListView listView;
-    Button btnGetAll, btnAdd, btnBackToMain;
+    Button btnGetAll, btnAdd, btnBack;
     RestClient restClient;
-    TextView teacher_Id;
+    TextView course_Id;
+    private String _Teacher_Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restClient = new RestClient();
-        setContentView(R.layout.activity_teachers);
+        setContentView(R.layout.activity_courses);
 
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnGetAll.setOnClickListener(this);
@@ -40,8 +41,12 @@ public class TeachersActivity extends AppCompatActivity implements android.view.
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
 
-        btnBackToMain = (Button) findViewById(R.id.btnBackToMain);
-        btnBackToMain.setOnClickListener(this);
+        btnBack = (Button) findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(this);
+
+        _Teacher_Id = "";
+        Intent intent = getIntent();
+        _Teacher_Id = intent.getStringExtra("teacher_Id");
     }
 
     //This function will call when the screen is activate
@@ -62,10 +67,11 @@ public class TeachersActivity extends AppCompatActivity implements android.view.
     public void onClick(View v) {
         if (v == findViewById(R.id.btnAdd)) {
 
-            Intent intent = new Intent(this, TeacherDetailActivity.class);
-            intent.putExtra("teacher_Id", "");
+            Intent intent = new Intent(this, CourseDetailActivity.class);
+            intent.putExtra("course_Id", "");
+            intent.putExtra("teacher_Id", _Teacher_Id);
             startActivity(intent);
-        } else if (v == findViewById(R.id.btnBackToMain)) {
+        } else if (v == findViewById(R.id.btnBack)) {
             finish();
         } else {
             // You should use refreshScreen() instead, just show you an easier method only :P
@@ -75,43 +81,45 @@ public class TeachersActivity extends AppCompatActivity implements android.view.
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<User>> call = restClient.getService().getUser();
-        call.enqueue(new Callback<List<User>>() {
+        Call<List<Course>> call = restClient.getService().getCourse();
+        call.enqueue(new Callback<List<Course>>() {
                          @Override
-                         public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                         public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
                              ListView lv = (ListView) findViewById(R.id.listView);
 
 
-                             ArrayList<HashMap<String, String>> userList = new ArrayList<HashMap<String, String>>();
+                             ArrayList<HashMap<String, String>> courseList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-                                 String userRole = String.valueOf(response.body().get(i).getUserRole());
-                                 if (userRole.equals("Teacher")) {
-                                     HashMap<String, String> user = new HashMap<String, String>();
-                                     user.put("id", String.valueOf(response.body().get(i).getId()));
-                                     user.put("name", String.valueOf(response.body().get(i).getFullName()));
 
-                                     userList.add(user);
+                                 String userId = String.valueOf(response.body().get(i).getUserId());
+                                 if (userId.equals(_Teacher_Id)) {
+                                     HashMap<String, String> course = new HashMap<String, String>();
+                                     course.put("id", String.valueOf(response.body().get(i).getId()));
+                                     course.put("name", String.valueOf(response.body().get(i).getName()));
+
+                                     courseList.add(course);
                                  }
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                  @Override
                                  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                     teacher_Id = (TextView) view.findViewById(R.id.user_Id);
-                                     String userId = teacher_Id.getText().toString();
-                                     Intent objIndent = new Intent(getApplicationContext(), TeacherDetailActivity.class);
-                                     objIndent.putExtra("teacher_Id", userId);
+                                     course_Id = (TextView) view.findViewById(R.id.user_Id);
+                                     String courseId = course_Id.getText().toString();
+                                     Intent objIndent = new Intent(getApplicationContext(), CourseDetailActivity.class);
+                                     objIndent.putExtra("course_Id", courseId);
+                                     objIndent.putExtra("teacher_Id", _Teacher_Id);
                                      startActivity(objIndent);
                                  }
                              });
-                             ListAdapter adapter = new SimpleAdapter(TeachersActivity.this, userList, R.layout.view_user_entry, new String[]{"id", "name"}, new int[]{R.id.user_Id, R.id.user_name});
+                             ListAdapter adapter = new SimpleAdapter(CoursesActivity.this, courseList, R.layout.view_user_entry, new String[]{"id", "name"}, new int[]{R.id.user_Id, R.id.user_name});
                              lv.setAdapter(adapter);
                          }
 
                          @Override
-                         public void onFailure(Call<List<User>> call, Throwable t) {
-                             Toast.makeText(TeachersActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                         public void onFailure(Call<List<Course>> call, Throwable t) {
+                             Toast.makeText(CoursesActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
 
                          }
                      }

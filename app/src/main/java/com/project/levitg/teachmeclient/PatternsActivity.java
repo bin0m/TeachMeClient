@@ -63,7 +63,7 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
         if (v == findViewById(R.id.btnAdd)) {
 
             Intent intent = new Intent(this, PatternDetailActivity.class);
-            intent.putExtra("pattern_Id", 0);
+            intent.putExtra("pattern_Id", "");
             startActivity(intent);
         } else if (v == findViewById(R.id.btnBackToMain)) {
             finish();

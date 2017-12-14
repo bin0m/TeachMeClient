@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         if (v == findViewById(R.id.btnAdd)) {
 
             Intent intent = new Intent(this, UserDetailActivity.class);
-            intent.putExtra("user_Id", 0);
+            intent.putExtra("user_Id", "");
             startActivity(intent);
         } else if (v == findViewById(R.id.btnBackToMain)) {
             finish();

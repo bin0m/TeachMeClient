@@ -11,15 +11,15 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose teacher:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+        android:text="Choose course:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="523dp"
-        tools:context="com.project.levitg.teachmeclient.TeacherDetailActivity">
+        tools:context="com.project.levitg.teachmeclient.CourseDetailActivity">
 
         <TextView
             android:id="@+id/textView"
@@ -29,7 +29,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="30dp"
-            android:text="FullName"
+            android:text="Name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -40,19 +40,9 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView"
             android:layout_marginTop="29dp"
-            android:text="Email"
+            android:text="Days"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView2"
-            android:layout_marginTop="29dp"
-            android:text="Login"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
             android:id="@+id/editTextName"
@@ -66,27 +56,15 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/editTextDays"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView3"
+            android:layout_alignBottom="@+id/textView2"
             android:layout_alignEnd="@+id/editTextName"
             android:layout_alignRight="@+id/editTextName"
-            android:layout_toRightOf="@+id/textView"
+            android:layout_toRightOf="@+id/textView2"
             android:ems="10"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/editTextLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView3"
-            android:layout_alignEnd="@+id/editTextEmail"
-            android:layout_alignLeft="@+id/editTextEmail"
-            android:layout_alignRight="@+id/editTextEmail"
-            android:layout_alignStart="@+id/editTextEmail"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="number" />
 
         <Button
             android:id="@+id/btnSave"
@@ -115,9 +93,8 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btnViewCourses"
-        style="@android:style/Widget.Material.Button"
+        android:id="@+id/btnViewSections"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next: View Courses" />
+        android:text="Next: View Sections" />
 </LinearLayout>
