@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".PatternsActivity" />
-        <activity android:name=".PatternDetailActivity"></activity>
+        <activity android:name=".PatternDetailActivity" />
+        <activity android:name=".TeachersActivity" />
+        <activity android:name=".TeacherDetailActivity"></activity>
     </application>
 
 </manifest>

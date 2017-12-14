@@ -23,4 +23,9 @@ public class ListOfActivities extends AppCompatActivity {
         Intent intent = new Intent(this, PatternsActivity.class);
         startActivity(intent);
     }
+
+    public void GoToCourseCreateFlow(View view) {
+        Intent intent = new Intent(this, TeachersActivity.class);
+        startActivity(intent);
+    }
 }
