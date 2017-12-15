@@ -41,7 +41,7 @@ public interface BackendService {
     @PATCH("user/{id}")
     Call<User> updateUserById(@Path("id") String id, @Body User user);
 
-    //i.e. http://teachmebackend.azurewebsites.net/tables/student
+    //i.e. http://teachmebackend.azurewebsites.net/tables/pattern
     @GET("pattern")
     Call<List<Pattern>> getPattern();
 
@@ -65,7 +65,7 @@ public interface BackendService {
     @PATCH("pattern/{id}")
     Call<Pattern> updatePatternById(@Path("id") String id, @Body Pattern pattern);
 
-    //i.e. http://teachmebackend.azurewebsites.net/tables/student
+    //i.e. http://teachmebackend.azurewebsites.net/tables/course
     @GET("course")
     Call<List<Course>> getCourse();
 
@@ -88,5 +88,29 @@ public interface BackendService {
     //Update course record with PATCH (only delta is updated) and post content in HTTP request BODY
     @PATCH("course/{id}")
     Call<Course> updateCourseById(@Path("id") String id, @Body Course course);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/section
+    @GET("section")
+    Call<List<Section>> getSection();
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/section/b04070c377c24b7295fda8ec8484dca5
+    //Get section record base on ID
+    @GET("section/{id}")
+    Call<Section> getSectionById(@Path("id") String id);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/section
+    //Add section record and post content in HTTP request BODY
+    @POST("section")
+    Call<Section> addSection(@Body Section section);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/section/b04070c377c24b7295fda8ec8484dca5
+    //Delete section record base on ID
+    @DELETE("section/{id}")
+    Call<Void> deleteSectionById(@Path("id") String id);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/section/b04070c377c24b7295fda8ec8484dca5
+    //Update section record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("section/{id}")
+    Call<Section> updateSectionById(@Path("id") String id, @Body Section section);
 }
 

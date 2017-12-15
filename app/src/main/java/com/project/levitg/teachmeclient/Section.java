@@ -1,13 +1,13 @@
 package com.project.levitg.teachmeclient;
 
 /**
- * Created by Greg L on 14.12.2017.
+ * Created by Greg L on 15.12.2017.
  */
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Course {
+public class Section {
 
     @SerializedName("deleted")
     @Expose(serialize = false)
@@ -29,17 +29,13 @@ public class Course {
     @Expose(serialize = false)
     private String id;
 
-    @SerializedName("days")
-    @Expose
-    private int days;
-
     @SerializedName("name")
     @Expose
     private String name;
 
-    @SerializedName("userId")
+    @SerializedName("courseId")
     @Expose
-    private String userId;
+    private String courseId;
 
     public boolean isDeleted() {
         return deleted;
@@ -81,14 +77,6 @@ public class Course {
         this.id = id;
     }
 
-    public int getDays() {
-        return days;
-    }
-
-    public void setDays(int days) {
-        this.days = days;
-    }
-
     public String getName() {
         return name;
     }
@@ -97,12 +85,12 @@ public class Course {
         this.name = name;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getCourseId() {
+        return courseId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
 }
