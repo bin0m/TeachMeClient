@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.project.levitg.teachmeclient.SectionDetailActivity">
+    tools:context="com.project.levitg.teachmeclient.LessonDetailActivity">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose section:"
+        android:text="Choose lesson:"
         android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -72,8 +72,8 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btnViewLessons"
+        android:id="@+id/btnViewPatterns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next: View Lessons" />
+        android:text="Next: View Patterns" />
 </LinearLayout>

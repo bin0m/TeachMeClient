@@ -112,5 +112,29 @@ public interface BackendService {
     //Update section record with PATCH (only delta is updated) and post content in HTTP request BODY
     @PATCH("section/{id}")
     Call<Section> updateSectionById(@Path("id") String id, @Body Section section);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/lesson
+    @GET("lesson")
+    Call<List<Lesson>> getLesson();
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/lesson/b04070c377c24b7295fda8ec8484dca5
+    //Get lesson record base on ID
+    @GET("lesson/{id}")
+    Call<Lesson> getLessonById(@Path("id") String id);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/lesson
+    //Add lesson record and post content in HTTP request BODY
+    @POST("lesson")
+    Call<Lesson> addLesson(@Body Lesson lesson);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/lesson/b04070c377c24b7295fda8ec8484dca5
+    //Delete lesson record base on ID
+    @DELETE("lesson/{id}")
+    Call<Void> deleteLessonById(@Path("id") String id);
+
+    //i.e. http://teachmebackend.azurewebsites.net/tables/lesson/b04070c377c24b7295fda8ec8484dca5
+    //Update lesson record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("lesson/{id}")
+    Call<Lesson> updateLessonById(@Path("id") String id, @Body Lesson lesson);
 }
 
