@@ -87,7 +87,7 @@ public class LessonDetailActivity extends AppCompatActivity implements android.v
         } else if (v == findViewById(R.id.btnClose)) {
             finish();
         } else if (v == findViewById(R.id.btnViewPatterns)) {
-            Intent intent = new Intent(this, LessonsActivity.class);
+            Intent intent = new Intent(this, PatternsActivity.class);
             intent.putExtra("lesson_Id", _Lesson_Id);
             startActivity(intent);
         } else if (findViewById(R.id.btnSave) == v) {

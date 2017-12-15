@@ -36,8 +36,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back to main"
-        android:id="@+id/btnBackToMain"
+        android:text="Back"
+        android:id="@+id/btnBack"
         android:layout_alignBottom="@+id/listView"
         android:layout_toRightOf="@+id/btnAdd"
         android:layout_toEndOf="@+id/btnAdd" />

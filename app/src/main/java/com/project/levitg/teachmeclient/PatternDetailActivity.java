@@ -20,7 +20,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
     EditText editTextName;
     EditText editLessonId;
     EditText editTextJson;
-    private String _Pattern_Id;
+    private String _Pattern_Id, _Lesson_Id;
     RestClient restService;
 
     @Override
@@ -44,8 +44,12 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
 
 
         _Pattern_Id = "";
+        _Lesson_Id = "";
         Intent intent = getIntent();
         _Pattern_Id = intent.getStringExtra("pattern_Id");
+        _Lesson_Id = intent.getStringExtra("lesson_Id");
+        editLessonId.setText(_Lesson_Id);
+
         if (_Pattern_Id != null && !_Pattern_Id.isEmpty()) {
             Call<Pattern> call = restService.getService().getPatternById(_Pattern_Id);
             call.enqueue(new Callback<Pattern>() {

@@ -24,9 +24,10 @@ import retrofit2.Response;
 public class PatternsActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     ListView listView;
-    Button btnGetAll, btnAdd, btnBackToMain;
+    Button btnGetAll, btnAdd, btnBack;
     RestClient restClient;
     TextView pattern_Id;
+    private String _Lesson_Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,12 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
 
-        btnBackToMain = (Button) findViewById(R.id.btnBackToMain);
-        btnBackToMain.setOnClickListener(this);
+        btnBack = (Button) findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(this);
+
+        _Lesson_Id = "";
+        Intent intent = getIntent();
+        _Lesson_Id = intent.getStringExtra("lesson_Id");
     }
 
     //This function will call when the screen is activate
@@ -64,8 +69,9 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
 
             Intent intent = new Intent(this, PatternDetailActivity.class);
             intent.putExtra("pattern_Id", "");
+            intent.putExtra("lesson_Id", _Lesson_Id);
             startActivity(intent);
-        } else if (v == findViewById(R.id.btnBackToMain)) {
+        } else if (v == findViewById(R.id.btnBack)) {
             finish();
         } else {
             // You should use refreshScreen() instead, just show you an easier method only :P
@@ -83,13 +89,17 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
 
 
                              ArrayList<HashMap<String, String>> patternList = new ArrayList<HashMap<String, String>>();
-
+                             //str.isEmpty()
                              for (int i = 0; i < response.body().size(); i++) {
-                                 HashMap<String, String> pattern = new HashMap<String, String>();
-                                 pattern.put("id", String.valueOf(response.body().get(i).getId()));
-                                 pattern.put("name", String.valueOf(response.body().get(i).getName()));
 
-                                 patternList.add(pattern);
+                                 String lessonId = String.valueOf(response.body().get(i).getLessonId());
+                                 if (_Lesson_Id == null || _Lesson_Id.isEmpty() || lessonId.equals(_Lesson_Id)) {
+                                     HashMap<String, String> pattern = new HashMap<String, String>();
+                                     pattern.put("id", String.valueOf(response.body().get(i).getId()));
+                                     pattern.put("name", String.valueOf(response.body().get(i).getName()));
+
+                                     patternList.add(pattern);
+                                 }
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -99,6 +109,7 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
                                      String patternId = pattern_Id.getText().toString();
                                      Intent objIndent = new Intent(getApplicationContext(), PatternDetailActivity.class);
                                      objIndent.putExtra("pattern_Id", patternId);
+                                     objIndent.putExtra("lesson_Id", _Lesson_Id);
                                      startActivity(objIndent);
                                  }
                              });
