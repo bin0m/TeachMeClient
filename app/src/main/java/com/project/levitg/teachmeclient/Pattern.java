@@ -37,6 +37,10 @@ public class Pattern {
     @Expose
     private String name;
 
+    @SerializedName("type")
+    @Expose
+    private String type;
+
     @SerializedName("lessonId")
     @Expose
     private String lessonId;
@@ -79,6 +83,14 @@ public class Pattern {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getJsonText() {

@@ -20,6 +20,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
     EditText editTextName;
     EditText editLessonId;
     EditText editTextJson;
+    EditText editTextType;
     private String _Pattern_Id, _Lesson_Id;
     RestClient restService;
 
@@ -36,6 +37,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextJson = (EditText) findViewById(R.id.editTextJson);
         editLessonId = (EditText) findViewById(R.id.editLessonId);
+        editTextType = (EditText) findViewById(R.id.editTextType);
 
 
         btnAdd.setOnClickListener(this);
@@ -59,6 +61,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
                     editTextName.setText(pattern.getName());
                     editTextJson.setText(pattern.getJsonText());
                     editLessonId.setText(pattern.getLessonId());
+                    editTextType.setText(pattern.getType());
                 }
 
                 @Override
@@ -96,6 +99,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
 
                 Pattern pattern = new Pattern();
                 pattern.setJsonText(editTextJson.getText().toString());
+                pattern.setType(editTextType.getText().toString());
                 pattern.setName(editTextName.getText().toString());
                 pattern.setLessonId(editLessonId.getText().toString());
 
@@ -125,6 +129,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
                     public void onResponse(Call<Pattern> call, Response<Pattern> response) {
                         Pattern existingPattern = response.body();
                         existingPattern.setJsonText(editTextJson.getText().toString());
+                        existingPattern.setType(editTextType.getText().toString());
                         existingPattern.setName(editTextName.getText().toString());
                         existingPattern.setLessonId(editLessonId.getText().toString());
 
