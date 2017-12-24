@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class SectionDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete;
+    Button btnRegister, btnDelete, btnDeleteFull;
     Button btnClose, btnViewLessons;
     EditText editTextName;
     private String _Section_Id, _Course_Id;
@@ -32,6 +32,7 @@ public class SectionDetailActivity extends AppCompatActivity implements android.
 
         btnRegister = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnDeleteFull = (Button) findViewById(R.id.btnDeleteFull);
         btnClose = (Button) findViewById(R.id.btnClose);
         btnViewLessons = (Button) findViewById(R.id.btnViewLessons);
 
@@ -39,6 +40,7 @@ public class SectionDetailActivity extends AppCompatActivity implements android.
 
         btnRegister.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
+        btnDeleteFull.setOnClickListener(this);
         btnClose.setOnClickListener(this);
         btnViewLessons.setOnClickListener(this);
 
@@ -75,7 +77,29 @@ public class SectionDetailActivity extends AppCompatActivity implements android.
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    Toast.makeText(SectionDetailActivity.this, "Section Record Deleted", Toast.LENGTH_LONG).show();
+                    if (response.code() == 204) {
+                        Toast.makeText(SectionDetailActivity.this, "Section Record Deleted", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(SectionDetailActivity.this, "Error: Not Deleted" + response.errorBody(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(SectionDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+            finish();
+        } else if (findViewById(R.id.btnDeleteFull) == v) {
+            Call<Void> call = restService.getService().deleteSectionAndChildrenById(_Section_Id);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.code() == 200) {
+                        Toast.makeText(SectionDetailActivity.this, "Section Record Deleted", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(SectionDetailActivity.this, "Error: Not Deleted" + response.errorBody(), Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 @Override
