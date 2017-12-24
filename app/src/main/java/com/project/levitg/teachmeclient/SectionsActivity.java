@@ -56,11 +56,11 @@ public class SectionsActivity extends AppCompatActivity implements android.view.
         refreshScreen_SimpleWay();
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        refreshScreen_SimpleWay();
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        refreshScreen_SimpleWay();
+    }
 
 
     @Override

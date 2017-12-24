@@ -137,6 +137,11 @@ public interface BackendService {
     @PATCH("tables/lesson/{id}")
     Call<Lesson> updateLessonById(@Path("id") String id, @Body Lesson lesson);
 
+    //i.e. http://teachmebackend.azurewebsites.net/api/courses/b04070c377c24b7295fda8ec8484dca5
+    //Delete section record including all its children( lessons)
+    @DELETE("api/courses/{id}")
+    Call<Void> deleteCourseAndChildrenById(@Path("id") String id);
+
     //i.e. http://teachmebackend.azurewebsites.net/api/sections/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
     @DELETE("api/sections/{id}")

@@ -56,11 +56,11 @@ public class CoursesActivity extends AppCompatActivity implements android.view.V
         refreshScreen_SimpleWay();
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        refreshScreen_SimpleWay();
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        refreshScreen_SimpleWay();
+    }
 
 
     @Override

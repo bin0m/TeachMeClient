@@ -18,7 +18,7 @@ import retrofit2.Response;
 
 public class CourseDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete;
+    Button btnRegister, btnDelete, btnDeleteFull;
     Button btnClose, btnViewSections;
     EditText editTextName;
     EditText editTextDays;
@@ -33,6 +33,7 @@ public class CourseDetailActivity extends AppCompatActivity implements android.v
 
         btnRegister = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnDeleteFull = (Button) findViewById(R.id.btnDeleteFull);
         btnClose = (Button) findViewById(R.id.btnClose);
         btnViewSections = (Button) findViewById(R.id.btnViewSections);
 
@@ -41,6 +42,7 @@ public class CourseDetailActivity extends AppCompatActivity implements android.v
 
         btnRegister.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
+        btnDeleteFull.setOnClickListener(this);
         btnClose.setOnClickListener(this);
         btnViewSections.setOnClickListener(this);
 
@@ -78,7 +80,29 @@ public class CourseDetailActivity extends AppCompatActivity implements android.v
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    Toast.makeText(CourseDetailActivity.this, "Course Record Deleted", Toast.LENGTH_LONG).show();
+                    if (response.code() == 204) {
+                        Toast.makeText(CourseDetailActivity.this, "Course Record Deleted", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(CourseDetailActivity.this, "Error: Not Deleted" + response.errorBody(), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(CourseDetailActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+            finish();
+        } else if (findViewById(R.id.btnDeleteFull) == v) {
+            Call<Void> call = restService.getService().deleteCourseAndChildrenById(_Course_Id);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.code() == 200) {
+                        Toast.makeText(CourseDetailActivity.this, "Course Record Deleted", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(CourseDetailActivity.this, "Error: Not Deleted" + response.errorBody(), Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 @Override
