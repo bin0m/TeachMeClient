@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestClient {
     //You need to change the IP if you testing environment is not local machine
     //or you may have different URL than we have here
-    private static final String BackendURL = "http://teachmebackend.azurewebsites.net/";
+    private static final String BackendURL = "http://teachmeserv.azurewebsites.net/";
     private BackendService backendService;
     private retrofit2.Retrofit restAdapter;
 

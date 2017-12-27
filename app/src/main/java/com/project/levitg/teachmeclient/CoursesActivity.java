@@ -81,7 +81,7 @@ public class CoursesActivity extends AppCompatActivity implements android.view.V
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Course>> call = restClient.getService().getCourse();
+        Call<List<Course>> call = restClient.getService().getCoursesByUserId(_Teacher_Id);
         call.enqueue(new Callback<List<Course>>() {
                          @Override
                          public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
@@ -91,15 +91,10 @@ public class CoursesActivity extends AppCompatActivity implements android.view.V
                              ArrayList<HashMap<String, String>> courseList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-
-                                 String userId = String.valueOf(response.body().get(i).getUserId());
-                                 if (userId.equals(_Teacher_Id)) {
-                                     HashMap<String, String> course = new HashMap<String, String>();
-                                     course.put("id", String.valueOf(response.body().get(i).getId()));
-                                     course.put("name", String.valueOf(response.body().get(i).getName()));
-
-                                     courseList.add(course);
-                                 }
+                                 HashMap<String, String> course = new HashMap<String, String>();
+                                 course.put("id", String.valueOf(response.body().get(i).getId()));
+                                 course.put("name", String.valueOf(response.body().get(i).getName()));
+                                 courseList.add(course);
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
