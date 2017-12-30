@@ -81,25 +81,24 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Pattern>> call = restClient.getService().getPattern();
+        Call<List<Pattern>> call;
+        if (_Lesson_Id == null || _Lesson_Id.isEmpty()) {
+            call = restClient.getService().getPattern();
+        } else {
+            call = restClient.getService().getPatternsByLessonId(_Lesson_Id);
+        }
         call.enqueue(new Callback<List<Pattern>>() {
                          @Override
                          public void onResponse(Call<List<Pattern>> call, Response<List<Pattern>> response) {
                              ListView lv = (ListView) findViewById(R.id.listView);
 
-
                              ArrayList<HashMap<String, String>> patternList = new ArrayList<HashMap<String, String>>();
-                             //str.isEmpty()
+
                              for (int i = 0; i < response.body().size(); i++) {
-
-                                 String lessonId = String.valueOf(response.body().get(i).getLessonId());
-                                 if (_Lesson_Id == null || _Lesson_Id.isEmpty() || lessonId.equals(_Lesson_Id)) {
-                                     HashMap<String, String> pattern = new HashMap<String, String>();
-                                     pattern.put("id", String.valueOf(response.body().get(i).getId()));
-                                     pattern.put("name", String.valueOf(response.body().get(i).getName()));
-
-                                     patternList.add(pattern);
-                                 }
+                                 HashMap<String, String> pattern = new HashMap<String, String>();
+                                 pattern.put("id", String.valueOf(response.body().get(i).getId()));
+                                 pattern.put("name", String.valueOf(response.body().get(i).getName()));
+                                 patternList.add(pattern);
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -81,25 +81,20 @@ public class LessonsActivity extends AppCompatActivity implements android.view.V
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Lesson>> call = restClient.getService().getLesson();
+
+        Call<List<Lesson>> call = restClient.getService().getLessonsBySectionId(_Section_Id);
         call.enqueue(new Callback<List<Lesson>>() {
                          @Override
                          public void onResponse(Call<List<Lesson>> call, Response<List<Lesson>> response) {
                              ListView lv = (ListView) findViewById(R.id.listView);
 
-
                              ArrayList<HashMap<String, String>> lessonList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-
-                                 String sectionId = String.valueOf(response.body().get(i).getSectionId());
-                                 if (sectionId.equals(_Section_Id)) {
-                                     HashMap<String, String> lesson = new HashMap<String, String>();
-                                     lesson.put("id", String.valueOf(response.body().get(i).getId()));
-                                     lesson.put("name", String.valueOf(response.body().get(i).getName()));
-
-                                     lessonList.add(lesson);
-                                 }
+                                 HashMap<String, String> lesson = new HashMap<String, String>();
+                                 lesson.put("id", String.valueOf(response.body().get(i).getId()));
+                                 lesson.put("name", String.valueOf(response.body().get(i).getName()));
+                                 lessonList.add(lesson);
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

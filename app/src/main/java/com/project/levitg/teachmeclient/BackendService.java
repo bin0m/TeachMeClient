@@ -115,7 +115,7 @@ public interface BackendService {
 
     //i.e. http://teachmeserv.azurewebsites.net/tables/lesson
     @GET("tables/lesson")
-    Call<List<Lesson>> getLesson();
+    Call<List<Pattern>> getLesson();
 
     //i.e. http://teachmeserv.azurewebsites.net/tables/lesson/b04070c377c24b7295fda8ec8484dca5
     //Get lesson record base on ID
@@ -151,5 +151,20 @@ public interface BackendService {
     //Get courses records by parent User id
     @GET("api/users/{id}/courses")
     Call<List<Course>> getCoursesByUserId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/courses/95777a45afc241dd87f3cae3274fe0af/sections
+    //Get sections records by parent Course id
+    @GET("api/courses/{id}/sections")
+    Call<List<Section>> getSectionsByCourseId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/sections/95777a45afc241dd87f3cae3274fe0af/lessons
+    //Get lessons records by parent Section id
+    @GET("api/sections/{id}/lessons")
+    Call<List<Lesson>> getLessonsBySectionId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/lessons/95777a45afc241dd87f3cae3274fe0af/patterns
+    //Get patterns records by parent Lesson id
+    @GET("api/lessons/{id}/patterns")
+    Call<List<Pattern>> getPatternsByLessonId(@Path("id") String id);
 }
 

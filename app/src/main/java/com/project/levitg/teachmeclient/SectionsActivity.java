@@ -81,7 +81,7 @@ public class SectionsActivity extends AppCompatActivity implements android.view.
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Section>> call = restClient.getService().getSection();
+        Call<List<Section>> call = restClient.getService().getSectionsByCourseId(_Course_Id);
         call.enqueue(new Callback<List<Section>>() {
                          @Override
                          public void onResponse(Call<List<Section>> call, Response<List<Section>> response) {
@@ -91,15 +91,10 @@ public class SectionsActivity extends AppCompatActivity implements android.view.
                              ArrayList<HashMap<String, String>> sectionList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-
-                                 String courseId = String.valueOf(response.body().get(i).getCourseId());
-                                 if (courseId.equals(_Course_Id)) {
-                                     HashMap<String, String> section = new HashMap<String, String>();
-                                     section.put("id", String.valueOf(response.body().get(i).getId()));
-                                     section.put("name", String.valueOf(response.body().get(i).getName()));
-
-                                     sectionList.add(section);
-                                 }
+                                 HashMap<String, String> section = new HashMap<String, String>();
+                                 section.put("id", String.valueOf(response.body().get(i).getId()));
+                                 section.put("name", String.valueOf(response.body().get(i).getName()));
+                                 sectionList.add(section);
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
