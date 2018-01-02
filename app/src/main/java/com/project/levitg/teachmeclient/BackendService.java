@@ -115,7 +115,7 @@ public interface BackendService {
 
     //i.e. http://teachmeserv.azurewebsites.net/tables/lesson
     @GET("tables/lesson")
-    Call<List<Pattern>> getLesson();
+    Call<List<Lesson>> getLesson();
 
     //i.e. http://teachmeserv.azurewebsites.net/tables/lesson/b04070c377c24b7295fda8ec8484dca5
     //Get lesson record base on ID
@@ -136,6 +136,30 @@ public interface BackendService {
     //Update lesson record with PATCH (only delta is updated) and post content in HTTP request BODY
     @PATCH("tables/lesson/{id}")
     Call<Lesson> updateLessonById(@Path("id") String id, @Body Lesson lesson);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/patternstudent
+    @GET("tables/patternstudent")
+    Call<List<PatternStudent>> getPatternStudent();
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/patternstudent/b04070c377c24b7295fda8ec8484dca5
+    //Get patternstudent record base on ID
+    @GET("tables/patternstudent/{id}")
+    Call<PatternStudent> getPatternStudentById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/patternstudent
+    //Add patternstudent record and post content in HTTP request BODY
+    @POST("tables/patternstudent")
+    Call<PatternStudent> addPatternStudent(@Body PatternStudent patternstudent);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/patternstudent/b04070c377c24b7295fda8ec8484dca5
+    //Delete patternstudent record base on ID
+    @DELETE("tables/patternstudent/{id}")
+    Call<Void> deletePatternStudentById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/patternstudent/b04070c377c24b7295fda8ec8484dca5
+    //Update patternstudent record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("tables/patternstudent/{id}")
+    Call<PatternStudent> updatePatternStudentById(@Path("id") String id, @Body PatternStudent patternstudent);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
@@ -166,5 +190,10 @@ public interface BackendService {
     //Get patterns records by parent Lesson id
     @GET("api/lessons/{id}/patterns")
     Call<List<Pattern>> getPatternsByLessonId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/patterns/95777a45afc241dd87f3cae3274fe0af/patternstudents
+    //Get patterns records by parent Lesson id
+    @GET("api/patterns/{id}/patternstudents")
+    Call<List<PatternStudent>> getPatternStudentsByPatternId(@Path("id") String id);
 }
 

@@ -16,7 +16,7 @@ import retrofit2.Response;
 public class PatternDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     Button btnAdd, btnDelete;
-    Button btnClose;
+    Button btnClose, btnViewPatternStudents;
     EditText editTextName;
     EditText editLessonId;
     EditText editTextJson;
@@ -33,6 +33,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
         btnAdd = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnClose = (Button) findViewById(R.id.btnClose);
+        btnViewPatternStudents = (Button) findViewById(R.id.btnViewPatternStudents);
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextJson = (EditText) findViewById(R.id.editTextJson);
@@ -43,6 +44,7 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
         btnAdd.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnClose.setOnClickListener(this);
+        btnViewPatternStudents.setOnClickListener(this);
 
 
         _Pattern_Id = "";
@@ -92,6 +94,10 @@ public class PatternDetailActivity extends AppCompatActivity implements android.
             finish();
         } else if (v == findViewById(R.id.btnClose)) {
             finish();
+        } else if (v == findViewById(R.id.btnViewPatternStudents)) {
+            Intent intent = new Intent(this, PatternStudentsActivity.class);
+            intent.putExtra("pattern_Id", _Pattern_Id);
+            startActivity(intent);
         } else if (findViewById(R.id.btnSave) == v) {
 
             if (_Pattern_Id == null || _Pattern_Id.isEmpty()) {

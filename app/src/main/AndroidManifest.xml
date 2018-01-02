@@ -31,7 +31,9 @@
         <activity android:name=".SectionsActivity" />
         <activity android:name=".SectionDetailActivity" />
         <activity android:name=".LessonsActivity" />
-        <activity android:name=".LessonDetailActivity"></activity>
+        <activity android:name=".LessonDetailActivity" />
+        <activity android:name=".PatternStudentsActivity" />
+        <activity android:name=".PatternStudentDetailActivity"></activity>
     </application>
 
 </manifest>
