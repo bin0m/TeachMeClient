@@ -51,7 +51,7 @@ public class PatternStudentDetailActivity extends AppCompatActivity implements a
         _Pattern_Id = "";
         Intent intent = getIntent();
         _PatternStudent_Id = intent.getStringExtra("patternstudent_Id");
-        _Pattern_Id = intent.getStringExtra("teacher_Id");
+        _Pattern_Id = intent.getStringExtra("pattern_Id");
 
         if (_PatternStudent_Id != null && !_PatternStudent_Id.isEmpty()) {
             Call<PatternStudent> call = restService.getService().getPatternStudentById(_PatternStudent_Id);
