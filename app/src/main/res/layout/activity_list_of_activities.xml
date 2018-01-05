@@ -34,4 +34,15 @@
         android:paddingLeft="6dip"
         android:paddingTop="6dip"
         app:layout_constraintTop_toBottomOf="@+id/btnPatterns" />
+
+    <Button
+        android:id="@+id/btnBlobManager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="GoToBlobManager"
+        android:text="Blob Manager"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        app:layout_constraintTop_toBottomOf="@+id/btnCourseCreateFlow" />
+
 </android.support.constraint.ConstraintLayout>

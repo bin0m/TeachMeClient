@@ -28,4 +28,9 @@ public class ListOfActivities extends AppCompatActivity {
         Intent intent = new Intent(this, TeachersActivity.class);
         startActivity(intent);
     }
+
+    public void GoToBlobManager(View view) {
+        Intent intent = new Intent(this, BlobManagerActivity.class);
+        startActivity(intent);
+    }
 }

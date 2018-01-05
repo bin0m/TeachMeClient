@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TeachMeClient</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="blob_getting_started_button">Blob Getting Started Sample</string>
+    <string name="action_settings">Settings</string>
 </resources>

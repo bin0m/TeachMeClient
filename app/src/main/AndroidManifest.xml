@@ -33,7 +33,8 @@
         <activity android:name=".LessonsActivity" />
         <activity android:name=".LessonDetailActivity" />
         <activity android:name=".PatternStudentsActivity" />
-        <activity android:name=".PatternStudentDetailActivity"></activity>
+        <activity android:name=".PatternStudentDetailActivity" />
+        <activity android:name=".BlobManagerActivity"></activity>
     </application>
 
 </manifest>
