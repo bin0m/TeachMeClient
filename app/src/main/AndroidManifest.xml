@@ -34,7 +34,9 @@
         <activity android:name=".LessonDetailActivity" />
         <activity android:name=".PatternStudentsActivity" />
         <activity android:name=".PatternStudentDetailActivity" />
-        <activity android:name=".BlobManagerActivity"></activity>
+        <activity android:name=".BlobManagerActivity" />
+        <activity android:name=".ListImagesActivity" />
+        <activity android:name=".ImageActivity"></activity>
     </application>
 
 </manifest>
