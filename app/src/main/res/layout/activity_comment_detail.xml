@@ -4,24 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingEnd="5dp"
     android:paddingStart="5dp"
-    tools:context="com.project.levitg.teachmeclient.PatternDetailActivity">
+    android:paddingEnd="5dp"
+    tools:context="com.project.levitg.teachmeclient.CommentDetailActivity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose Pattern:"
+        android:text="Choose comment:"
         android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="480dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView"
@@ -31,29 +31,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="30dp"
-            android:text="Name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView"
-            android:layout_marginTop="29dp"
-            android:text="Type"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView3"
-            android:layout_marginTop="29dp"
-            android:text="LessonId"
+            android:text="User Id"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -62,17 +40,27 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView4"
+            android:layout_below="@+id/textView"
             android:layout_marginTop="29dp"
-            android:text="Json"
+            android:text="User Name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
-        <EditText
-            android:id="@+id/editTextName"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="29dp"
+            android:text="Comment Text"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextUserId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView2"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/textView"
@@ -80,37 +68,29 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextType"
+            android:id="@+id/editTextUserName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView4"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignEnd="@+id/editTextUserId"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/textView2"
+            android:ems="10"
+            android:textIsSelectable="true"
+            android:inputType="none" />
+
+        <EditText
+            android:id="@+id/editTextComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignEnd="@+id/editTextUserId"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/textView3"
             android:ems="10"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/editLessonId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textView2"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@+id/textView4"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/editTextJson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/editTextName"
-            android:layout_alignStart="@+id/editTextName"
-            android:layout_alignTop="@+id/textView2"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:lines="4" />
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btnSave"
@@ -126,7 +106,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:text="Close" />
 
         <Button
@@ -138,18 +117,4 @@
             android:text="Delete" />
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/btnViewPatternStudents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="20"
-        android:text="Next: View PatternStudents" />
-
-    <Button
-        android:id="@+id/btnViewComments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next: View Comments" />
-
 </LinearLayout>

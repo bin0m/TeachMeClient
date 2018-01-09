@@ -36,7 +36,9 @@
         <activity android:name=".PatternStudentDetailActivity" />
         <activity android:name=".BlobManagerActivity" />
         <activity android:name=".ListImagesActivity" />
-        <activity android:name=".ImageActivity"></activity>
+        <activity android:name=".ImageActivity" />
+        <activity android:name=".CommentsActivity" />
+        <activity android:name=".CommentDetailActivity"></activity>
     </application>
 
 </manifest>

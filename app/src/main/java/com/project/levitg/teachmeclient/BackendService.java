@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Greg L on 04.12.2017.
@@ -161,6 +162,30 @@ public interface BackendService {
     @PATCH("tables/patternstudent/{id}")
     Call<PatternStudent> updatePatternStudentById(@Path("id") String id, @Body PatternStudent patternstudent);
 
+    //i.e. http://teachmeserv.azurewebsites.net/tables/patternstudent
+    @GET("tables/comment")
+    Call<List<Comment>> getComment();
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/comment/b04070c377c24b7295fda8ec8484dca5
+    //Get comment record base on ID
+    @GET("tables/comment/{id}?$expand=user")
+    Call<Comment> getCommentById(@Path("id") String id, @Query("filter") String filter);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/comment
+    //Add comment record and post content in HTTP request BODY
+    @POST("tables/comment")
+    Call<Comment> addComment(@Body Comment comment);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/comment/b04070c377c24b7295fda8ec8484dca5
+    //Delete comment record base on ID
+    @DELETE("tables/comment/{id}")
+    Call<Void> deleteCommentById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/comment/b04070c377c24b7295fda8ec8484dca5
+    //Update comment record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("tables/comment/{id}")
+    Call<Comment> updateCommentById(@Path("id") String id, @Body Comment comment);
+
     //i.e. http://teachmeserv.azurewebsites.net/api/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
     @DELETE("api/courses/{id}")
@@ -192,8 +217,13 @@ public interface BackendService {
     Call<List<Pattern>> getPatternsByLessonId(@Path("id") String id);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/patterns/95777a45afc241dd87f3cae3274fe0af/patternstudents
-    //Get patterns records by parent Lesson id
+    //Get patterns records by parent Pattern id
     @GET("api/patterns/{id}/patternstudents")
     Call<List<PatternStudent>> getPatternStudentsByPatternId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/patterns/95777a45afc241dd87f3cae3274fe0af/comments
+    //Get patterns records by parent Pattern id
+    @GET("api/patterns/{id}/comments")
+    Call<List<Comment>> getCommentsByPatternId(@Path("id") String id);
 }
 
