@@ -79,9 +79,13 @@ public class CommentsActivity extends AppCompatActivity implements android.view.
         }
     }
 
+    private String buildQueryPatternId(String param) {
+        String query = String.format("patternId eq '%s'", param);
+        return query;
+    }
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Comment>> call = restClient.getService().getCommentsByPatternId(_Pattern_Id);
+        Call<List<Comment>> call = restClient.getService().getCommentByQuery(buildQueryPatternId(_Pattern_Id));
         call.enqueue(new Callback<List<Comment>>() {
                          @Override
                          public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {

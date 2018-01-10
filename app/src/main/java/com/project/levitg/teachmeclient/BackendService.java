@@ -162,9 +162,14 @@ public interface BackendService {
     @PATCH("tables/patternstudent/{id}")
     Call<PatternStudent> updatePatternStudentById(@Path("id") String id, @Body PatternStudent patternstudent);
 
-    //i.e. http://teachmeserv.azurewebsites.net/tables/patternstudent
+    //i.e. http://teachmeserv.azurewebsites.net/tables/comment
     @GET("tables/comment")
     Call<List<Comment>> getComment();
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/comment?$expand=user&$filter=patternId eq 'a3dce27b9f0b425a859f1bdb47b35af1'
+    //Get comments records base on query
+    @GET("tables/comment?$expand=user")
+    Call<List<Comment>> getCommentByQuery(@Query("filter") String filter);
 
     //i.e. http://teachmeserv.azurewebsites.net/tables/comment/b04070c377c24b7295fda8ec8484dca5
     //Get comment record base on ID
