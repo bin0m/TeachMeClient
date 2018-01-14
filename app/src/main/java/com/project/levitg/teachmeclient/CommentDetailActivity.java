@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class CommentDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     Button btnRegister, btnDelete, btnDeleteFull;
-    Button btnClose;
+    Button btnClose, btnViewCommentRatings;
     EditText editTextUserId;
     EditText editTextUserName;
     EditText editTextComment;
@@ -36,10 +36,12 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
         btnRegister = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnClose = (Button) findViewById(R.id.btnClose);
+        btnViewCommentRatings = (Button) findViewById(R.id.btnViewCommentRatings);
 
         editTextUserId = (EditText) findViewById(R.id.editTextUserId);
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextComment = (EditText) findViewById(R.id.editTextComment);
+        btnViewCommentRatings.setOnClickListener(this);
 
         btnRegister.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
@@ -96,6 +98,10 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
             finish();
         } else if (v == findViewById(R.id.btnClose)) {
             finish();
+        } else if (v == findViewById(R.id.btnViewCommentRatings)) {
+            Intent intent = new Intent(this, CommentRatingsActivity.class);
+            intent.putExtra("comment_Id", _Comment_Id);
+            startActivity(intent);
         } else if (findViewById(R.id.btnSave) == v) {
 
             if (_Comment_Id == null || _Comment_Id.isEmpty()) {

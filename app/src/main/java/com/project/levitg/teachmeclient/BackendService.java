@@ -191,6 +191,35 @@ public interface BackendService {
     @PATCH("tables/comment/{id}")
     Call<Comment> updateCommentById(@Path("id") String id, @Body Comment comment);
 
+    //i.e. http://teachmeserv.azurewebsites.net/tables/commentrating
+    @GET("tables/commentrating")
+    Call<List<CommentRating>> getCommentRating();
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/commentrating?$expand=user&$filter=patternId eq 'a3dce27b9f0b425a859f1bdb47b35af1'
+    //Get comments records base on query
+    @GET("tables/commentrating?$expand=user")
+    Call<List<CommentRating>> getCommentRatingByQuery(@Query("$filter") String filter);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/commentrating/b04070c377c24b7295fda8ec8484dca5
+    //Get commentrating record base on ID
+    @GET("tables/commentrating/{id}?$expand=user")
+    Call<CommentRating> getCommentRatingById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/commentrating
+    //Add commentrating record and post content in HTTP request BODY
+    @POST("tables/commentrating")
+    Call<CommentRating> addCommentRating(@Body CommentRating commentrating);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/commentrating/b04070c377c24b7295fda8ec8484dca5
+    //Delete commentrating record base on ID
+    @DELETE("tables/commentrating/{id}")
+    Call<Void> deleteCommentRatingById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/tables/commentrating/b04070c377c24b7295fda8ec8484dca5
+    //Update commentrating record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("tables/commentrating/{id}")
+    Call<CommentRating> updateCommentRatingById(@Path("id") String id, @Body CommentRating commentrating);
+
     //i.e. http://teachmeserv.azurewebsites.net/api/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
     @DELETE("api/courses/{id}")
@@ -223,12 +252,17 @@ public interface BackendService {
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/patterns/95777a45afc241dd87f3cae3274fe0af/patternstudents
     //Get patterns records by parent Pattern id
-    @GET("api/patterns/{id}/patternstudents")
+    @GET("api/patterns/{id}/commentratings")
     Call<List<PatternStudent>> getPatternStudentsByPatternId(@Path("id") String id);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/patterns/95777a45afc241dd87f3cae3274fe0af/comments
     //Get patterns records by parent Pattern id
     @GET("api/patterns/{id}/comments")
     Call<List<Comment>> getCommentsByPatternId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/comments/95777a45afc241dd87f3cae3274fe0af/commentratings
+    //Get commentratings records by parent Comment id
+    @GET("api/comments/{id}/commentratings")
+    Call<List<CommentRating>> getCommentRatingsByCommentId(@Path("id") String id);
 }
 

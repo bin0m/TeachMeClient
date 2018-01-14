@@ -38,7 +38,9 @@
         <activity android:name=".ListImagesActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".CommentsActivity" />
-        <activity android:name=".CommentDetailActivity"></activity>
+        <activity android:name=".CommentDetailActivity" />
+        <activity android:name=".CommentRatingsActivity" />
+        <activity android:name=".CommentRatingDetailActivity"></activity>
     </application>
 
 </manifest>
