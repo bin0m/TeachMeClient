@@ -63,6 +63,14 @@ public class User {
     @Expose
     private String userRole;
 
+    @SerializedName("avatarPath")
+    @Expose
+    private String avatarPath;
+
+    @SerializedName("dateOfBirth")
+    @Expose
+    private String dateOfBirth;
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -159,4 +167,19 @@ public class User {
         this.userRole = userRole;
     }
 
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 }
