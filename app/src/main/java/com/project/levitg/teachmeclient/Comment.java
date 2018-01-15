@@ -124,6 +124,14 @@ public class Comment {
         this.user = user;
     }
 
+    public List<CommentRating> getCommentRatings() {
+        return commentRatings;
+    }
+
+    public void setCommentRatings(List<CommentRating> commentRatings) {
+        this.commentRatings = commentRatings;
+    }
+
     public int CalculateOverallRating() {
         int sum = 0;
         for (CommentRating cr : commentRatings) {
