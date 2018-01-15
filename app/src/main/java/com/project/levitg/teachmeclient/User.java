@@ -35,9 +35,9 @@ public class User {
     @Expose
     private String registerDate;
 
-    @SerializedName("completed\u0421oursesCount")
+    @SerializedName("completedCoursesCount")
     @Expose
-    private int completedOursesCount;
+    private int completedCoursesCount;
 
     @SerializedName("password")
     @Expose
@@ -119,12 +119,12 @@ public class User {
         this.registerDate = registerDate;
     }
 
-    public int getCompletedOursesCount() {
-        return completedOursesCount;
+    public int getCompletedCoursesCount() {
+        return completedCoursesCount;
     }
 
-    public void setCompletedOursesCount(int completedOursesCount) {
-        this.completedOursesCount = completedOursesCount;
+    public void setCompletedCoursesCount(int completedCoursesCount) {
+        this.completedCoursesCount = completedCoursesCount;
     }
 
     public String getPassword() {

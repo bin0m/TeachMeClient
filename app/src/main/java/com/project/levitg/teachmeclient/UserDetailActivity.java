@@ -101,7 +101,7 @@ public class UserDetailActivity extends AppCompatActivity implements android.vie
                 user.setPassword("hardcoded Password");
                 user.setUserRole("Student");
 
-                user.setCompletedOursesCount(0);
+                user.setCompletedCoursesCount(0);
                 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                 user.setRegisterDate(DATE_FORMAT.format(Calendar.getInstance().getTime()));
 
