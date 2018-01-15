@@ -23,6 +23,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
     Button btnClose, btnViewCommentRatings;
     EditText editTextUserId;
     EditText editTextUserName;
+    EditText editTextOverallRating;
     EditText editTextComment;
     private String _Comment_Id, _Pattern_Id;
     RestClient restService;
@@ -41,12 +42,13 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
         editTextUserId = (EditText) findViewById(R.id.editTextUserId);
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextComment = (EditText) findViewById(R.id.editTextComment);
-        btnViewCommentRatings.setOnClickListener(this);
+        editTextOverallRating = (EditText) findViewById(R.id.editTextOverallRating);
+
 
         btnRegister.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnClose.setOnClickListener(this);
-
+        btnViewCommentRatings.setOnClickListener(this);
 
         _Comment_Id = "";
         _Pattern_Id = "";
@@ -55,7 +57,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
         _Pattern_Id = intent.getStringExtra("pattern_Id");
 
         if (_Comment_Id != null && !_Comment_Id.isEmpty()) {
-            Call<Comment> call = restService.getService().getCommentById(_Comment_Id, null);
+            Call<Comment> call = restService.getService().getCommentById(_Comment_Id);
             call.enqueue(new Callback<Comment>() {
                 @Override
                 public void onResponse(Call<Comment> call, Response<Comment> response) {
@@ -63,6 +65,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
                     editTextUserId.setText(comment.getUserId());
                     editTextUserName.setText(comment.getUser().getFullName());
                     editTextComment.setText(comment.getCommentText());
+                    editTextOverallRating.setText(String.valueOf(comment.CalculateOverallRating()));
                     _Pattern_Id = comment.getPatternId();
                 }
 
@@ -131,7 +134,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
             } else {
                 // Update existing comment
 
-                Call<Comment> call = restService.getService().getCommentById(_Comment_Id, null);
+                Call<Comment> call = restService.getService().getCommentById(_Comment_Id);
                 call.enqueue(new Callback<Comment>() {
                     @Override
                     public void onResponse(Call<Comment> call, Response<Comment> response) {

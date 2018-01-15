@@ -4,6 +4,8 @@ package com.project.levitg.teachmeclient;
  * Created by UserG on 09.01.2018.
  */
 
+
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -44,6 +46,10 @@ public class Comment {
     @SerializedName("user")
     @Expose(serialize = false)
     private User user;
+
+    @SerializedName("commentRatings")
+    @Expose(serialize = false)
+    private List<CommentRating> commentRatings = null;
 
 
     public boolean isDeleted() {
@@ -116,5 +122,13 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int CalculateOverallRating() {
+        int sum = 0;
+        for (CommentRating cr : commentRatings) {
+            sum += cr.getRating();
+        }
+        return sum;
     }
 }

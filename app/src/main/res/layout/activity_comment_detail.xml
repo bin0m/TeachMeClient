@@ -11,7 +11,7 @@
     tools:context="com.project.levitg.teachmeclient.CommentDetailActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose comment:"
@@ -56,6 +56,17 @@
             android:text="Comment Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="29dp"
+            android:text="OverallRating"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
         <EditText
             android:id="@+id/editTextUserId"
             android:layout_width="wrap_content"
@@ -92,6 +103,20 @@
             android:layout_toRightOf="@+id/textView3"
             android:ems="10"
             android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextOverallRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignEnd="@+id/editTextUserId"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/textView4"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none" />
 
         <Button
             android:id="@+id/btnSave"
