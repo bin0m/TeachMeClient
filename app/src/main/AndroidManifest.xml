@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project.levitg.teachmeclient">
 
+    <!-- For Authentication -->
     <uses-permission android:name="android.permission.INTERNET" />
-
     <permission android:name="android.permission.INTERNET" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -40,7 +45,22 @@
         <activity android:name=".CommentsActivity" />
         <activity android:name=".CommentDetailActivity" />
         <activity android:name=".CommentRatingsActivity" />
-        <activity android:name=".CommentRatingDetailActivity"></activity>
+        <activity android:name=".CommentRatingDetailActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="@string/app_url_scheme"
+                    android:host="easyauth.callback" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -33,4 +33,9 @@ public class ListOfActivities extends AppCompatActivity {
         Intent intent = new Intent(this, BlobManagerActivity.class);
         startActivity(intent);
     }
+
+    public void GoToLoginActivity(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
