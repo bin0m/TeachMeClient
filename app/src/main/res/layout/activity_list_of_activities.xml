@@ -55,4 +55,14 @@
         android:paddingTop="6dip"
         app:layout_constraintTop_toBottomOf="@+id/btnBlobManager" />
 
+    <Button
+        android:id="@+id/btnAzureTestLoginActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="GoToAzureTestLoginActivity"
+        android:text="Azure Test Login"
+        android:paddingLeft="6dip"
+        android:paddingTop="6dip"
+        app:layout_constraintTop_toBottomOf="@+id/btnLoginActivity" />
+
 </android.support.constraint.ConstraintLayout>

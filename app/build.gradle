@@ -6,6 +6,7 @@ android {
         applicationId "com.project.levitg.teachmeclient"
         minSdkVersion 23
         targetSdkVersion 26
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -43,5 +44,8 @@ dependencies {
     compile 'com.microsoft.azure.android:azure-storage-android:2.0.0@aar'
     compile 'com.fasterxml.jackson.core:jackson-core:2.9.3'
     compile 'com.microsoft.azure:azure-mobile-android:3.4.0@aar'
+    compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@jar'
     compile 'com.android.support:customtabs:26.1.0'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
+    compile 'com.google.guava:guava:19.0'
 }

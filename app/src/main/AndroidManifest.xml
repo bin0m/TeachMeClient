@@ -4,7 +4,6 @@
 
     <!-- For Authentication -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <permission android:name="android.permission.INTERNET" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -48,7 +47,7 @@
         <activity android:name=".CommentRatingDetailActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -57,10 +56,11 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="@string/app_url_scheme"
-                    android:host="easyauth.callback" />
+                    android:host="easyauth.callback"
+                    android:scheme="@string/app_url_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".AzureTestLoginActivity"></activity>
     </application>
 
 </manifest>

@@ -100,6 +100,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             createAndShowDialog(e, "Error");
         }
 
+//        try {
+//            mClient = new MobileServiceClient("https://teachmeserv.azurewebsites.net", this);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -126,7 +132,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button facebookSignInButton = (Button) findViewById(R.id.facebook_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        facebookSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 authenticateFacebook();
@@ -199,9 +205,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void authenticateFacebook() {
-        // Login using the Google provider.
+        // Login using the Facebook provider.
+        AzureServiceAdapter.getInstance().getClient().login(MobileServiceAuthenticationProvider.Facebook, GlobalConstants.URL_SCHEME, FACEBOOK_LOGIN_REQUEST_CODE);
+    }
 
-        mClient.login(MobileServiceAuthenticationProvider.Facebook, "@string/app_url_scheme", FACEBOOK_LOGIN_REQUEST_CODE);
+    private String findProviderFromLoginRequestCode(int requestCode) {
+        String provider;
+        switch (requestCode) {
+            case GOOGLE_LOGIN_REQUEST_CODE:
+                provider = "Google";
+                break;
+            case FACEBOOK_LOGIN_REQUEST_CODE:
+                provider = "Facebook";
+                break;
+            default:
+                throw new IllegalArgumentException("request code does not match any provider");
+        }
+        return provider;
     }
 
     /**
@@ -358,22 +378,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // When request completes
+
+        final String provider = findProviderFromLoginRequestCode(requestCode);
         if (resultCode == RESULT_OK) {
             // Check the request code matches the one we send in the login request
-            if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
-                MobileServiceActivityResult result = mClient.onActivityResult(data);
+            if (requestCode == FACEBOOK_LOGIN_REQUEST_CODE) {
+                MobileServiceActivityResult result = AzureServiceAdapter.getInstance().getClient().onActivityResult(data);
                 if (result.isLoggedIn()) {
                     // login succeeded
-                    createAndShowDialog(String.format("You are now logged in - %1$2s", mClient.getCurrentUser().getUserId()), "Success");
+                    createAndShowDialog(String.format("You are now logged in - %1$2s", AzureServiceAdapter.getInstance().getClient().getCurrentUser().getUserId()), "Success");
                     // Get the table instance to use.
-                    // mToDoTable =  mClient.getTable(Course.class);
+                    // mToDoTable =  AzureServiceAdapter.getInstance().getClient().getTable(Course.class);
                 } else {
                     // login failed, check the error message
                     String errorMessage = result.getErrorMessage();
-                    createAndShowDialog(errorMessage, "Error");
+                    createAndShowDialog(errorMessage, "Login failed");
                 }
             }
+        } else {
+            // login failed
+            createAndShowDialog(String.format("%Result code: %i", resultCode), "Failed ");
         }
     }
 

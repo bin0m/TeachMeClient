@@ -38,4 +38,9 @@ public class ListOfActivities extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+    public void GoToAzureTestLoginActivity(View view) {
+        Intent intent = new Intent(this, AzureTestLoginActivity.class);
+        startActivity(intent);
+    }
 }
