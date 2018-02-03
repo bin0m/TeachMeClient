@@ -252,7 +252,7 @@ public interface BackendService {
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/patterns/95777a45afc241dd87f3cae3274fe0af/patternstudents
     //Get patterns records by parent Pattern id
-    @GET("api/v1.0/patterns/{id}/commentratings")
+    @GET("api/v1.0/patterns/{id}/patternstudents")
     Call<List<PatternStudent>> getPatternStudentsByPatternId(@Path("id") String id);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/patterns/95777a45afc241dd87f3cae3274fe0af/comments
