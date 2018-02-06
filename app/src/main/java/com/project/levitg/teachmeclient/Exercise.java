@@ -1,13 +1,13 @@
 package com.project.levitg.teachmeclient;
 
 /**
- * Created by Greg L on 01.01.2018.
+ * Created by Greg L on 10.12.2017.
  */
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PatternStudent {
+public class Exercise {
 
     @SerializedName("deleted")
     @Expose(serialize = false)
@@ -29,21 +29,33 @@ public class PatternStudent {
     @Expose(serialize = false)
     private String id;
 
-    @SerializedName("studentAnswer")
+    @SerializedName("text")
     @Expose
-    private String studentAnswer;
+    private String text;
 
-    @SerializedName("isDone")
+    @SerializedName("name")
     @Expose
-    private Boolean isDone;
+    private String name;
 
-    @SerializedName("userId")
+    @SerializedName("image")
     @Expose
-    private String userId;
+    private String image;
 
-    @SerializedName("patternId")
+    @SerializedName("type")
     @Expose
-    private String patternId;
+    private String type;
+
+    @SerializedName("answer")
+    @Expose
+    private String answer;
+
+    @SerializedName("question")
+    @Expose
+    private String question;
+
+    @SerializedName("lessonId")
+    @Expose
+    private String lessonId;
 
     public boolean isDeleted() {
         return deleted;
@@ -85,36 +97,60 @@ public class PatternStudent {
         this.id = id;
     }
 
-    public Boolean getIsDone() {
-        return isDone;
+    public String getType() {
+        return type;
     }
 
-    public void setIsDone(Boolean isDone) {
-        this.isDone = isDone;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getStudentAnswer() {
-        return studentAnswer;
+    public String getText() {
+        return text;
     }
 
-    public void setStudentAnswer(String studentAnswer) {
-        this.studentAnswer = studentAnswer;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPatternId() {
-        return patternId;
+    public String getImage() {
+        return image;
     }
 
-    public void setPatternId(String patternId) {
-        this.patternId = patternId;
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(String lessonId) {
+        this.lessonId = lessonId;
     }
 
 }

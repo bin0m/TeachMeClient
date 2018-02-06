@@ -27,7 +27,7 @@ public class CommentsActivity extends AppCompatActivity implements android.view.
     Button btnGetAll, btnAdd, btnBack;
     RestClient restClient;
     TextView comment_Id;
-    private String _Pattern_Id;
+    private String _Exercise_Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,9 @@ public class CommentsActivity extends AppCompatActivity implements android.view.
         btnBack = (Button) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
 
-        _Pattern_Id = "";
+        _Exercise_Id = "";
         Intent intent = getIntent();
-        _Pattern_Id = intent.getStringExtra("pattern_Id");
+        _Exercise_Id = intent.getStringExtra("exercise_Id");
     }
 
     //This function will call when the screen is activate
@@ -69,7 +69,7 @@ public class CommentsActivity extends AppCompatActivity implements android.view.
 
             Intent intent = new Intent(this, CommentDetailActivity.class);
             intent.putExtra("comment_Id", "");
-            intent.putExtra("pattern_Id", _Pattern_Id);
+            intent.putExtra("exercise_Id", _Exercise_Id);
             startActivity(intent);
         } else if (v == findViewById(R.id.btnBack)) {
             finish();
@@ -79,13 +79,13 @@ public class CommentsActivity extends AppCompatActivity implements android.view.
         }
     }
 
-    private String buildQueryPatternId(String param) {
-        String query = String.format("patternId eq '%s'", param);
+    private String buildQueryExerciseId(String param) {
+        String query = String.format("exerciseId eq '%s'", param);
         return query;
     }
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Comment>> call = restClient.getService().getCommentByQuery(buildQueryPatternId(_Pattern_Id));
+        Call<List<Comment>> call = restClient.getService().getCommentByQuery(buildQueryExerciseId(_Exercise_Id));
         call.enqueue(new Callback<List<Comment>>() {
                          @Override
                          public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
@@ -108,7 +108,7 @@ public class CommentsActivity extends AppCompatActivity implements android.view.
                                      String commentId = comment_Id.getText().toString();
                                      Intent objIndent = new Intent(getApplicationContext(), CommentDetailActivity.class);
                                      objIndent.putExtra("comment_Id", commentId);
-                                     objIndent.putExtra("pattern_Id", _Pattern_Id);
+                                     objIndent.putExtra("exercise_Id", _Exercise_Id);
                                      startActivity(objIndent);
                                  }
                              });

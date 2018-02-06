@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
-    tools:context="com.project.levitg.teachmeclient.PatternsActivity">
+    tools:context="com.project.levitg.teachmeclient.ExercisesActivity">
 
     <ListView
         android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Pattern"
+        android:text="Add Exercise"
         android:id="@+id/btnAdd"
         android:layout_alignBottom="@+id/listView"
         android:layout_toRightOf="@+id/btnGetAll"

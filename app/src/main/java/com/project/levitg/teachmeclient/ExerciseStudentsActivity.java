@@ -21,19 +21,19 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class PatternStudentsActivity extends AppCompatActivity implements android.view.View.OnClickListener {
+public class ExerciseStudentsActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     ListView listView;
     Button btnGetAll, btnAdd, btnBack;
     RestClient restClient;
-    TextView patternstudent_Id;
-    private String _Pattern_Id;
+    TextView exercisestudent_Id;
+    private String _Exercise_Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restClient = new RestClient();
-        setContentView(R.layout.activity_patternstudents);
+        setContentView(R.layout.activity_exercisestudents);
 
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnGetAll.setOnClickListener(this);
@@ -44,9 +44,9 @@ public class PatternStudentsActivity extends AppCompatActivity implements androi
         btnBack = (Button) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
 
-        _Pattern_Id = "";
+        _Exercise_Id = "";
         Intent intent = getIntent();
-        _Pattern_Id = intent.getStringExtra("pattern_Id");
+        _Exercise_Id = intent.getStringExtra("exercise_Id");
     }
 
     //This function will call when the screen is activate
@@ -67,9 +67,9 @@ public class PatternStudentsActivity extends AppCompatActivity implements androi
     public void onClick(View v) {
         if (v == findViewById(R.id.btnAdd)) {
 
-            Intent intent = new Intent(this, PatternStudentDetailActivity.class);
-            intent.putExtra("patternstudent_Id", "");
-            intent.putExtra("pattern_Id", _Pattern_Id);
+            Intent intent = new Intent(this, ExerciseStudentDetailActivity.class);
+            intent.putExtra("exercisestudent_Id", "");
+            intent.putExtra("exercise_Id", _Exercise_Id);
             startActivity(intent);
         } else if (v == findViewById(R.id.btnBack)) {
             finish();
@@ -81,40 +81,40 @@ public class PatternStudentsActivity extends AppCompatActivity implements androi
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<PatternStudent>> call = restClient.getService().getPatternStudentsByPatternId(_Pattern_Id);
-        call.enqueue(new Callback<List<PatternStudent>>() {
+        Call<List<ExerciseStudent>> call = restClient.getService().getExerciseStudentsByExerciseId(_Exercise_Id);
+        call.enqueue(new Callback<List<ExerciseStudent>>() {
                          @Override
-                         public void onResponse(Call<List<PatternStudent>> call, Response<List<PatternStudent>> response) {
+                         public void onResponse(Call<List<ExerciseStudent>> call, Response<List<ExerciseStudent>> response) {
                              ListView lv = (ListView) findViewById(R.id.listView);
 
 
-                             ArrayList<HashMap<String, String>> patternstudentList = new ArrayList<HashMap<String, String>>();
+                             ArrayList<HashMap<String, String>> exercisestudentList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-                                 HashMap<String, String> patternstudent = new HashMap<String, String>();
-                                 patternstudent.put("id", String.valueOf(response.body().get(i).getId()));
-                                 patternstudent.put("name", String.valueOf(response.body().get(i).getUserId()));
-                                 patternstudentList.add(patternstudent);
+                                 HashMap<String, String> exercisestudent = new HashMap<String, String>();
+                                 exercisestudent.put("id", String.valueOf(response.body().get(i).getId()));
+                                 exercisestudent.put("name", String.valueOf(response.body().get(i).getUserId()));
+                                 exercisestudentList.add(exercisestudent);
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                  @Override
                                  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                     patternstudent_Id = (TextView) view.findViewById(R.id.user_Id);
-                                     String patternstudentId = patternstudent_Id.getText().toString();
-                                     Intent objIndent = new Intent(getApplicationContext(), PatternStudentDetailActivity.class);
-                                     objIndent.putExtra("patternstudent_Id", patternstudentId);
-                                     objIndent.putExtra("pattern_Id", _Pattern_Id);
+                                     exercisestudent_Id = (TextView) view.findViewById(R.id.user_Id);
+                                     String exercisestudentId = exercisestudent_Id.getText().toString();
+                                     Intent objIndent = new Intent(getApplicationContext(), ExerciseStudentDetailActivity.class);
+                                     objIndent.putExtra("exercisestudent_Id", exercisestudentId);
+                                     objIndent.putExtra("exercise_Id", _Exercise_Id);
                                      startActivity(objIndent);
                                  }
                              });
-                             ListAdapter adapter = new SimpleAdapter(PatternStudentsActivity.this, patternstudentList, R.layout.view_user_entry, new String[]{"id", "name"}, new int[]{R.id.user_Id, R.id.user_name});
+                             ListAdapter adapter = new SimpleAdapter(ExerciseStudentsActivity.this, exercisestudentList, R.layout.view_user_entry, new String[]{"id", "name"}, new int[]{R.id.user_Id, R.id.user_name});
                              lv.setAdapter(adapter);
                          }
 
                          @Override
-                         public void onFailure(Call<List<PatternStudent>> call, Throwable t) {
-                             Toast.makeText(PatternStudentsActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                         public void onFailure(Call<List<ExerciseStudent>> call, Throwable t) {
+                             Toast.makeText(ExerciseStudentsActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
 
                          }
                      }

@@ -21,19 +21,19 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 
-public class PatternsActivity extends AppCompatActivity implements android.view.View.OnClickListener {
+public class ExercisesActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     ListView listView;
     Button btnGetAll, btnAdd, btnBack;
     RestClient restClient;
-    TextView pattern_Id;
+    TextView exercise_Id;
     private String _Lesson_Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restClient = new RestClient();
-        setContentView(R.layout.activity_patterns);
+        setContentView(R.layout.activity_exercise);
 
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnGetAll.setOnClickListener(this);
@@ -67,8 +67,8 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
     public void onClick(View v) {
         if (v == findViewById(R.id.btnAdd)) {
 
-            Intent intent = new Intent(this, PatternDetailActivity.class);
-            intent.putExtra("pattern_Id", "");
+            Intent intent = new Intent(this, ExerciseDetailActivity.class);
+            intent.putExtra("exercise_Id", "");
             intent.putExtra("lesson_Id", _Lesson_Id);
             startActivity(intent);
         } else if (v == findViewById(R.id.btnBack)) {
@@ -81,44 +81,44 @@ public class PatternsActivity extends AppCompatActivity implements android.view.
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Pattern>> call;
+        Call<List<Exercise>> call;
         if (_Lesson_Id == null || _Lesson_Id.isEmpty()) {
-            call = restClient.getService().getPattern();
+            call = restClient.getService().getExercise();
         } else {
-            call = restClient.getService().getPatternsByLessonId(_Lesson_Id);
+            call = restClient.getService().getExercisesByLessonId(_Lesson_Id);
         }
-        call.enqueue(new Callback<List<Pattern>>() {
+        call.enqueue(new Callback<List<Exercise>>() {
                          @Override
-                         public void onResponse(Call<List<Pattern>> call, Response<List<Pattern>> response) {
+                         public void onResponse(Call<List<Exercise>> call, Response<List<Exercise>> response) {
                              ListView lv = (ListView) findViewById(R.id.listView);
 
-                             ArrayList<HashMap<String, String>> patternList = new ArrayList<HashMap<String, String>>();
+                             ArrayList<HashMap<String, String>> exerciseList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-                                 HashMap<String, String> pattern = new HashMap<String, String>();
-                                 pattern.put("id", String.valueOf(response.body().get(i).getId()));
-                                 pattern.put("name", String.valueOf(response.body().get(i).getName()));
-                                 patternList.add(pattern);
+                                 HashMap<String, String> exercise = new HashMap<String, String>();
+                                 exercise.put("id", String.valueOf(response.body().get(i).getId()));
+                                 exercise.put("name", String.valueOf(response.body().get(i).getName()));
+                                 exerciseList.add(exercise);
                              }
 
                              lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                  @Override
                                  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                     pattern_Id = (TextView) view.findViewById(R.id.user_Id);
-                                     String patternId = pattern_Id.getText().toString();
-                                     Intent objIndent = new Intent(getApplicationContext(), PatternDetailActivity.class);
-                                     objIndent.putExtra("pattern_Id", patternId);
+                                     exercise_Id = (TextView) view.findViewById(R.id.user_Id);
+                                     String exerciseId = exercise_Id.getText().toString();
+                                     Intent objIndent = new Intent(getApplicationContext(), ExerciseDetailActivity.class);
+                                     objIndent.putExtra("exercise_Id", exerciseId);
                                      objIndent.putExtra("lesson_Id", _Lesson_Id);
                                      startActivity(objIndent);
                                  }
                              });
-                             ListAdapter adapter = new SimpleAdapter(PatternsActivity.this, patternList, R.layout.view_user_entry, new String[]{"id", "name"}, new int[]{R.id.user_Id, R.id.user_name});
+                             ListAdapter adapter = new SimpleAdapter(ExercisesActivity.this, exerciseList, R.layout.view_user_entry, new String[]{"id", "name"}, new int[]{R.id.user_Id, R.id.user_name});
                              lv.setAdapter(adapter);
                          }
 
                          @Override
-                         public void onFailure(Call<List<Pattern>> call, Throwable t) {
-                             Toast.makeText(PatternsActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                         public void onFailure(Call<List<Exercise>> call, Throwable t) {
+                             Toast.makeText(ExercisesActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
 
                          }
                      }

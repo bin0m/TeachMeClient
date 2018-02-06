@@ -8,13 +8,13 @@
     android:orientation="vertical"
     android:paddingEnd="5dp"
     android:paddingStart="5dp"
-    tools:context="com.project.levitg.teachmeclient.PatternDetailActivity">
+    tools:context="com.project.levitg.teachmeclient.ExerciseDetailActivity">
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose Pattern:"
+        android:text="Choose Exercise:"
         android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -64,7 +64,29 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView4"
             android:layout_marginTop="29dp"
-            android:text="Json"
+            android:text="Question"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="29dp"
+            android:text="Answer"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView6"
+            android:layout_marginTop="29dp"
+            android:text="Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
@@ -102,15 +124,39 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editTextJson"
+            android:id="@+id/editTextQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/editTextName"
             android:layout_alignStart="@+id/editTextName"
-            android:layout_alignTop="@+id/textView2"
+            android:layout_above="@+id/textView6"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_toEndOf="@+id/textView2"
             android:ems="10"
-            android:inputType="textMultiLine"
-            android:lines="4" />
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editTextName"
+            android:layout_alignStart="@+id/editTextName"
+            android:layout_above="@+id/textView7"
+            android:layout_toRightOf="@+id/textView6"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editTextName"
+            android:layout_alignStart="@+id/editTextName"
+            android:layout_alignBottom="@+id/textView7"
+            android:layout_toRightOf="@+id/textView7"
+            android:ems="10"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btnSave"
@@ -140,11 +186,11 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btnViewPatternStudents"
+        android:id="@+id/btnViewExerciseStudents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="20"
-        android:text="Next: View PatternStudents" />
+        android:text="Next: View ExerciseStudents" />
 
     <Button
         android:id="@+id/btnViewComments"

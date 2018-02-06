@@ -74,8 +74,8 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btnViewPatterns"
+        android:id="@+id/btnViewExercises"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next: View Patterns" />
+        android:text="Next: View Exercises" />
 </LinearLayout>

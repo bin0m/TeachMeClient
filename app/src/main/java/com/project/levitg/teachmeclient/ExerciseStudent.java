@@ -1,13 +1,13 @@
 package com.project.levitg.teachmeclient;
 
 /**
- * Created by Greg L on 10.12.2017.
+ * Created by Greg L on 01.01.2018.
  */
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Pattern {
+public class ExerciseStudent {
 
     @SerializedName("deleted")
     @Expose(serialize = false)
@@ -29,21 +29,21 @@ public class Pattern {
     @Expose(serialize = false)
     private String id;
 
-    @SerializedName("jsonText")
+    @SerializedName("studentAnswer")
     @Expose
-    private String jsonText;
+    private String studentAnswer;
 
-    @SerializedName("name")
+    @SerializedName("isDone")
     @Expose
-    private String name;
+    private Boolean isDone;
 
-    @SerializedName("type")
+    @SerializedName("userId")
     @Expose
-    private String type;
+    private String userId;
 
-    @SerializedName("lessonId")
+    @SerializedName("exerciseId")
     @Expose
-    private String lessonId;
+    private String exerciseId;
 
     public boolean isDeleted() {
         return deleted;
@@ -85,36 +85,36 @@ public class Pattern {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public Boolean getIsDone() {
+        return isDone;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setIsDone(Boolean isDone) {
+        this.isDone = isDone;
     }
 
-    public String getJsonText() {
-        return jsonText;
+    public String getStudentAnswer() {
+        return studentAnswer;
     }
 
-    public void setJsonText(String jsonText) {
-        this.jsonText = jsonText;
+    public void setStudentAnswer(String studentAnswer) {
+        this.studentAnswer = studentAnswer;
     }
 
-    public String getName() {
-        return name;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getLessonId() {
-        return lessonId;
+    public String getExerciseId() {
+        return exerciseId;
     }
 
-    public void setLessonId(String lessonId) {
-        this.lessonId = lessonId;
+    public void setExerciseId(String exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
 }

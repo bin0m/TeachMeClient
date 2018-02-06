@@ -42,29 +42,29 @@ public interface BackendService {
     @PATCH("api/v1.0/user/{id}")
     Call<User> updateUserById(@Path("id") String id, @Body User user);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pattern
-    @GET("api/v1.0/pattern")
-    Call<List<Pattern>> getPattern();
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercise
+    @GET("api/v1.0/exercise")
+    Call<List<Exercise>> getExercise();
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pattern/21a1573d-9862-40b1-a179-767fbfc57a8f
-    //Get pattern record base on ID
-    @GET("api/v1.0/pattern/{id}")
-    Call<Pattern> getPatternById(@Path("id") String id);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercise/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Get exercise record base on ID
+    @GET("api/v1.0/exercise/{id}")
+    Call<Exercise> getExerciseById(@Path("id") String id);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pattern
-    //Add pattern record and post content in HTTP request BODY
-    @POST("api/v1.0/pattern")
-    Call<Pattern> addPattern(@Body Pattern pattern);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercise
+    //Add exercise record and post content in HTTP request BODY
+    @POST("api/v1.0/exercise")
+    Call<Exercise> addExercise(@Body Exercise exercise);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pattern/21a1573d-9862-40b1-a179-767fbfc57a8f
-    //Delete pattern record base on ID
-    @DELETE("api/v1.0/pattern/{id}")
-    Call<Void> deletePatternById(@Path("id") String id);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercise/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Delete exercise record base on ID
+    @DELETE("api/v1.0/exercise/{id}")
+    Call<Void> deleteExerciseById(@Path("id") String id);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pattern/21a1573d-9862-40b1-a179-767fbfc57a8f
-    //Update pattern record with PATCH (only delta is updated) and post content in HTTP request BODY
-    @PATCH("api/v1.0/pattern/{id}")
-    Call<Pattern> updatePatternById(@Path("id") String id, @Body Pattern pattern);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercise/21a1573d-9862-40b1-a179-767fbfc57a8f
+    //Update exercise record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("api/v1.0/exercise/{id}")
+    Call<Exercise> updateExerciseById(@Path("id") String id, @Body Exercise exercise);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/course
     @GET("api/v1.0/course")
@@ -138,35 +138,35 @@ public interface BackendService {
     @PATCH("api/v1.0/lesson/{id}")
     Call<Lesson> updateLessonById(@Path("id") String id, @Body Lesson lesson);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/patternstudent
-    @GET("api/v1.0/patternstudent")
-    Call<List<PatternStudent>> getPatternStudent();
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercisestudent
+    @GET("api/v1.0/exercisestudent")
+    Call<List<ExerciseStudent>> getExerciseStudent();
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/patternstudent/b04070c377c24b7295fda8ec8484dca5
-    //Get patternstudent record base on ID
-    @GET("api/v1.0/patternstudent/{id}")
-    Call<PatternStudent> getPatternStudentById(@Path("id") String id);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercisestudent/b04070c377c24b7295fda8ec8484dca5
+    //Get exercisestudent record base on ID
+    @GET("api/v1.0/exercisestudent/{id}")
+    Call<ExerciseStudent> getExerciseStudentById(@Path("id") String id);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/patternstudent
-    //Add patternstudent record and post content in HTTP request BODY
-    @POST("api/v1.0/patternstudent")
-    Call<PatternStudent> addPatternStudent(@Body PatternStudent patternstudent);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercisestudent
+    //Add exercisestudent record and post content in HTTP request BODY
+    @POST("api/v1.0/exercisestudent")
+    Call<ExerciseStudent> addExerciseStudent(@Body ExerciseStudent exercisestudent);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/patternstudent/b04070c377c24b7295fda8ec8484dca5
-    //Delete patternstudent record base on ID
-    @DELETE("api/v1.0/patternstudent/{id}")
-    Call<Void> deletePatternStudentById(@Path("id") String id);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercisestudent/b04070c377c24b7295fda8ec8484dca5
+    //Delete exercisestudent record base on ID
+    @DELETE("api/v1.0/exercisestudent/{id}")
+    Call<Void> deleteExerciseStudentById(@Path("id") String id);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/patternstudent/b04070c377c24b7295fda8ec8484dca5
-    //Update patternstudent record with PATCH (only delta is updated) and post content in HTTP request BODY
-    @PATCH("api/v1.0/patternstudent/{id}")
-    Call<PatternStudent> updatePatternStudentById(@Path("id") String id, @Body PatternStudent patternstudent);
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercisestudent/b04070c377c24b7295fda8ec8484dca5
+    //Update exercisestudent record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("api/v1.0/exercisestudent/{id}")
+    Call<ExerciseStudent> updateExerciseStudentById(@Path("id") String id, @Body ExerciseStudent exercisestudent);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/comment
     @GET("api/v1.0/comment")
     Call<List<Comment>> getComment();
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/comment?$expand=user,commentRatings&$filter=patternId eq 'a3dce27b9f0b425a859f1bdb47b35af1'
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/comment?$expand=user,commentRatings&$filter=exerciseId eq 'a3dce27b9f0b425a859f1bdb47b35af1'
     //Get comments records base on query
     @GET("api/v1.0/comment?$expand=user,commentRatings")
     Call<List<Comment>> getCommentByQuery(@Query("$filter") String filter);
@@ -195,7 +195,7 @@ public interface BackendService {
     @GET("api/v1.0/commentrating")
     Call<List<CommentRating>> getCommentRating();
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/commentrating?$expand=user&$filter=patternId eq 'a3dce27b9f0b425a859f1bdb47b35af1'
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/commentrating?$expand=user&$filter=exerciseId eq 'a3dce27b9f0b425a859f1bdb47b35af1'
     //Get comments records base on query
     @GET("api/v1.0/commentrating?$expand=user")
     Call<List<CommentRating>> getCommentRatingByQuery(@Query("$filter") String filter);
@@ -245,20 +245,20 @@ public interface BackendService {
     @GET("api/v1.0/sections/{id}/lessons")
     Call<List<Lesson>> getLessonsBySectionId(@Path("id") String id);
 
-    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/lessons/95777a45afc241dd87f3cae3274fe0af/patterns
-    //Get patterns records by parent Lesson id
-    @GET("api/v1.0/lessons/{id}/patterns")
-    Call<List<Pattern>> getPatternsByLessonId(@Path("id") String id);
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/lessons/95777a45afc241dd87f3cae3274fe0af/exercises
+    //Get exercises records by parent Lesson id
+    @GET("api/v1.0/lessons/{id}/exercises")
+    Call<List<Exercise>> getExercisesByLessonId(@Path("id") String id);
 
-    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/patterns/95777a45afc241dd87f3cae3274fe0af/patternstudents
-    //Get patterns records by parent Pattern id
-    @GET("api/v1.0/patterns/{id}/patternstudents")
-    Call<List<PatternStudent>> getPatternStudentsByPatternId(@Path("id") String id);
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/exercisestudents
+    //Get exercises records by parent Exercise id
+    @GET("api/v1.0/exercises/{id}/exercisestudents")
+    Call<List<ExerciseStudent>> getExerciseStudentsByExerciseId(@Path("id") String id);
 
-    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/patterns/95777a45afc241dd87f3cae3274fe0af/comments
-    //Get patterns records by parent Pattern id
-    @GET("api/v1.0/patterns/{id}/comments")
-    Call<List<Comment>> getCommentsByPatternId(@Path("id") String id);
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/comments
+    //Get exercises records by parent Exercise id
+    @GET("api/v1.0/exercises/{id}/comments")
+    Call<List<Comment>> getCommentsByExerciseId(@Path("id") String id);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/comments/95777a45afc241dd87f3cae3274fe0af/commentratings
     //Get commentratings records by parent Comment id

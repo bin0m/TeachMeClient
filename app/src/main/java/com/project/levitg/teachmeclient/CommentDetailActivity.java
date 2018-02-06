@@ -25,7 +25,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
     EditText editTextUserName;
     EditText editTextOverallRating;
     EditText editTextComment;
-    private String _Comment_Id, _Pattern_Id;
+    private String _Comment_Id, _Exercise_Id;
     RestClient restService;
 
     @Override
@@ -51,10 +51,10 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
         btnViewCommentRatings.setOnClickListener(this);
 
         _Comment_Id = "";
-        _Pattern_Id = "";
+        _Exercise_Id = "";
         Intent intent = getIntent();
         _Comment_Id = intent.getStringExtra("comment_Id");
-        _Pattern_Id = intent.getStringExtra("pattern_Id");
+        _Exercise_Id = intent.getStringExtra("exercise_Id");
 
         if (_Comment_Id != null && !_Comment_Id.isEmpty()) {
             Call<Comment> call = restService.getService().getCommentById(_Comment_Id);
@@ -66,7 +66,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
                     editTextUserName.setText(comment.getUser().getFullName());
                     editTextComment.setText(comment.getCommentText());
                     editTextOverallRating.setText(String.valueOf(comment.CalculateOverallRating()));
-                    _Pattern_Id = comment.getPatternId();
+                    _Exercise_Id = comment.getExerciseId();
                 }
 
                 @Override
@@ -113,7 +113,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
                 Comment comment = new Comment();
                 comment.setUserId(editTextUserId.getText().toString());
                 comment.setCommentText(editTextComment.getText().toString());
-                comment.setPatternId(_Pattern_Id);
+                comment.setExerciseId(_Exercise_Id);
 
                 restService.getService().addComment(comment).enqueue(new Callback<Comment>() {
                     @Override
@@ -141,7 +141,7 @@ public class CommentDetailActivity extends AppCompatActivity implements android.
                         Comment existingComment = response.body();
                         existingComment.setUserId(editTextUserId.getText().toString());
                         existingComment.setCommentText(editTextComment.getText().toString());
-                        existingComment.setPatternId(_Pattern_Id);
+                        existingComment.setExerciseId(_Exercise_Id);
 
                         // Use Backend API to update comment
                         restService.getService().updateCommentById(_Comment_Id, existingComment).enqueue(new Callback<Comment>() {

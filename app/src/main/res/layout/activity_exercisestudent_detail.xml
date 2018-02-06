@@ -8,13 +8,13 @@
     android:orientation="vertical"
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
-    tools:context="com.project.levitg.teachmeclient.PatternStudentDetailActivity">
+    tools:context="com.project.levitg.teachmeclient.ExerciseStudentDetailActivity">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose patternstudent:"
+        android:text="Choose exercisestudent:"
         android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

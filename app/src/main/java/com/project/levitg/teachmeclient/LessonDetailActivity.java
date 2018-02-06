@@ -19,7 +19,7 @@ import retrofit2.Response;
 public class LessonDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     Button btnRegister, btnDelete;
-    Button btnClose, btnViewPatterns;
+    Button btnClose, btnViewExercises;
     EditText editTextName;
     private String _Lesson_Id, _Section_Id;
     RestClient restService;
@@ -33,14 +33,14 @@ public class LessonDetailActivity extends AppCompatActivity implements android.v
         btnRegister = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnClose = (Button) findViewById(R.id.btnClose);
-        btnViewPatterns = (Button) findViewById(R.id.btnViewPatterns);
+        btnViewExercises = (Button) findViewById(R.id.btnViewExercises);
 
         editTextName = (EditText) findViewById(R.id.editTextName);
 
         btnRegister.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnClose.setOnClickListener(this);
-        btnViewPatterns.setOnClickListener(this);
+        btnViewExercises.setOnClickListener(this);
 
 
         _Lesson_Id = "";
@@ -86,8 +86,8 @@ public class LessonDetailActivity extends AppCompatActivity implements android.v
             finish();
         } else if (v == findViewById(R.id.btnClose)) {
             finish();
-        } else if (v == findViewById(R.id.btnViewPatterns)) {
-            Intent intent = new Intent(this, PatternsActivity.class);
+        } else if (v == findViewById(R.id.btnViewExercises)) {
+            Intent intent = new Intent(this, ExercisesActivity.class);
             intent.putExtra("lesson_Id", _Lesson_Id);
             startActivity(intent);
         } else if (findViewById(R.id.btnSave) == v) {

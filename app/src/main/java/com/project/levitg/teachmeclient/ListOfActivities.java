@@ -19,8 +19,8 @@ public class ListOfActivities extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void GoToPatterns(View view) {
-        Intent intent = new Intent(this, PatternsActivity.class);
+    public void GoToExercises(View view) {
+        Intent intent = new Intent(this, ExercisesActivity.class);
         startActivity(intent);
     }
 

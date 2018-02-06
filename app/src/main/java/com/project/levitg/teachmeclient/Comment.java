@@ -39,9 +39,9 @@ public class Comment {
     @Expose
     private String userId;
 
-    @SerializedName("patternId")
+    @SerializedName("exerciseId")
     @Expose
-    private String patternId;
+    private String exerciseId;
 
     @SerializedName("user")
     @Expose(serialize = false)
@@ -108,12 +108,12 @@ public class Comment {
         this.userId = userId;
     }
 
-    public String getPatternId() {
-        return patternId;
+    public String getExerciseId() {
+        return exerciseId;
     }
 
-    public void setPatternId(String patternId) {
-        this.patternId = patternId;
+    public void setExerciseId(String exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
     public User getUser() {

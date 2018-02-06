@@ -16,11 +16,11 @@
         android:paddingTop="6dip" />
 
     <Button
-        android:id="@+id/btnPatterns"
+        android:id="@+id/btnExercises"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="GoToPatterns"
-        android:text="Patterns"
+        android:onClick="GoToExercises"
+        android:text="Exercises"
         android:paddingLeft="6dip"
         android:paddingTop="6dip"
         app:layout_constraintTop_toBottomOf="@+id/btnUsers" />
@@ -33,7 +33,7 @@
         android:text="Course Create Flow"
         android:paddingLeft="6dip"
         android:paddingTop="6dip"
-        app:layout_constraintTop_toBottomOf="@+id/btnPatterns" />
+        app:layout_constraintTop_toBottomOf="@+id/btnExercises" />
 
     <Button
         android:id="@+id/btnBlobManager"

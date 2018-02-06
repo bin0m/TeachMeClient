@@ -26,8 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatternsActivity" />
-        <activity android:name=".PatternDetailActivity" />
+        <activity android:name=".ExercisesActivity" />
+        <activity android:name=".ExerciseDetailActivity" />
         <activity android:name=".TeachersActivity" />
         <activity android:name=".TeacherDetailActivity" />
         <activity android:name=".CoursesActivity" />
@@ -36,8 +36,8 @@
         <activity android:name=".SectionDetailActivity" />
         <activity android:name=".LessonsActivity" />
         <activity android:name=".LessonDetailActivity" />
-        <activity android:name=".PatternStudentsActivity" />
-        <activity android:name=".PatternStudentDetailActivity" />
+        <activity android:name=".ExerciseStudentsActivity" />
+        <activity android:name=".ExerciseStudentDetailActivity" />
         <activity android:name=".BlobManagerActivity" />
         <activity android:name=".ListImagesActivity" />
         <activity android:name=".ImageActivity" />
