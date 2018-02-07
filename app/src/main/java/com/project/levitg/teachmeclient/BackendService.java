@@ -220,6 +220,30 @@ public interface BackendService {
     @PATCH("api/v1.0/commentrating/{id}")
     Call<CommentRating> updateCommentRatingById(@Path("id") String id, @Body CommentRating commentrating);
 
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pair
+    @GET("api/v1.0/pair")
+    Call<List<Pair>> getPair();
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pair/b04070c377c24b7295fda8ec8484dca5
+    //Get pair record base on ID
+    @GET("api/v1.0/pair/{id}")
+    Call<Pair> getPairById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pair
+    //Add pair record and post content in HTTP request BODY
+    @POST("api/v1.0/pair")
+    Call<Pair> addPair(@Body Pair pair);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pair/b04070c377c24b7295fda8ec8484dca5
+    //Delete pair record base on ID
+    @DELETE("api/v1.0/pair/{id}")
+    Call<Void> deletePairById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/pair/b04070c377c24b7295fda8ec8484dca5
+    //Update pair record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("api/v1.0/pair/{id}")
+    Call<Pair> updatePairById(@Path("id") String id, @Body Pair pair);
+
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
     @DELETE("api/v1.0/courses/{id}")
@@ -251,12 +275,12 @@ public interface BackendService {
     Call<List<Exercise>> getExercisesByLessonId(@Path("id") String id);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/exercisestudents
-    //Get exercises records by parent Exercise id
+    //Get exercisestudents records by parent Exercise id
     @GET("api/v1.0/exercises/{id}/exercisestudents")
     Call<List<ExerciseStudent>> getExerciseStudentsByExerciseId(@Path("id") String id);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/comments
-    //Get exercises records by parent Exercise id
+    //Get comments records by parent Exercise id
     @GET("api/v1.0/exercises/{id}/comments")
     Call<List<Comment>> getCommentsByExerciseId(@Path("id") String id);
 
@@ -264,5 +288,11 @@ public interface BackendService {
     //Get commentratings records by parent Comment id
     @GET("api/v1.0/comments/{id}/commentratings")
     Call<List<CommentRating>> getCommentRatingsByCommentId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/pairs
+    //Get pairs records by parent Exercise id
+    @GET("api/v1.0/exercises/{id}/pairs")
+    Call<List<Pair>> getPairsByExerciseId(@Path("id") String id);
+
 }
 

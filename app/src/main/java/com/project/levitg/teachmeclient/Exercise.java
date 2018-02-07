@@ -4,6 +4,7 @@ package com.project.levitg.teachmeclient;
  * Created by Greg L on 10.12.2017.
  */
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -56,6 +57,10 @@ public class Exercise {
     @SerializedName("lessonId")
     @Expose
     private String lessonId;
+
+    @SerializedName("pairs")
+    @Expose(serialize = true)
+    private List<Pair> pairs;
 
     public boolean isDeleted() {
         return deleted;
@@ -151,6 +156,14 @@ public class Exercise {
 
     public void setLessonId(String lessonId) {
         this.lessonId = lessonId;
+    }
+
+    public List<Pair> getPairs() {
+        return pairs;
+    }
+
+    public void setPairs(List<Pair> pairs) {
+        this.pairs = pairs;
     }
 
 }
