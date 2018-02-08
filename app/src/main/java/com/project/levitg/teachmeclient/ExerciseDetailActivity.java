@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -129,7 +132,11 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
                 exercise.setQuestion(editTextQuestion.getText().toString());
                 exercise.setAnswer(editTextAnswer.getText().toString());
 
-                restService.getService().addExercise(exercise).enqueue(new Callback<Exercise>() {
+                List<Pair> pairs = Arrays.asList(new Pair("some Value", "some Equal"));
+                exercise.setPairs(pairs);
+
+
+                restService.getService().addExerciseWithPairs(exercise).enqueue(new Callback<Exercise>() {
                     @Override
                     public void onResponse(Call<Exercise> call, Response<Exercise> response) {
                         if (response.code() == 201) {

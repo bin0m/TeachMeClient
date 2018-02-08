@@ -294,5 +294,10 @@ public interface BackendService {
     @GET("api/v1.0/exercises/{id}/pairs")
     Call<List<Pair>> getPairsByExerciseId(@Path("id") String id);
 
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises
+    //Add exercise record and post content in HTTP request BODY
+    @POST("api/v1.0/exercises")
+    Call<Exercise> addExerciseWithPairs(@Body Exercise exercise);
+
 }
 

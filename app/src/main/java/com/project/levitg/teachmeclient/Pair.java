@@ -11,6 +11,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class Pair {
 
+    public Pair(String value, String equal) {
+        this.value = value;
+        this.equal = equal;
+    }
+
     @SerializedName("deleted")
     @Expose(serialize = false)
     private boolean deleted;

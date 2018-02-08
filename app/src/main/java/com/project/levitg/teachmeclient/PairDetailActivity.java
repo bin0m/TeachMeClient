@@ -95,9 +95,7 @@ public class PairDetailActivity extends AppCompatActivity implements android.vie
             if (_Pair_Id == null || _Pair_Id.isEmpty()) {
                 // No Id -> new pair
 
-                Pair pair = new Pair();
-                pair.setValue(editTextValue.getText().toString());
-                pair.setEqual(editTextEqual.getText().toString());
+                Pair pair = new Pair(editTextValue.getText().toString(), editTextEqual.getText().toString());
                 pair.setExerciseId(_Exercise_Id);
 
                 restService.getService().addPair(pair).enqueue(new Callback<Pair>() {
