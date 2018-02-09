@@ -8,6 +8,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -298,6 +299,11 @@ public interface BackendService {
     //Add exercise record and post content in HTTP request BODY
     @POST("api/v1.0/exercises")
     Call<Exercise> addExerciseWithPairs(@Body Exercise exercise);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises
+    //Add exercise record and post content in HTTP request BODY
+    @PUT("api/v1.0/exercises/{id}")
+    Call<Exercise> updateExerciseWithPairsById(@Path("id") String id, @Body Exercise exercise);
 
 }
 

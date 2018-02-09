@@ -168,11 +168,16 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
                         existingExercise.setQuestion(editTextQuestion.getText().toString());
                         existingExercise.setAnswer(editTextAnswer.getText().toString());
 
+                        List<Pair> pairs = Arrays.asList(new Pair("after update value", "after update equal"));
+                        existingExercise.setPairs(pairs);
+
                         // Use Backend API to update exercise
-                        restService.getService().updateExerciseById(_Exercise_Id, existingExercise).enqueue(new Callback<Exercise>() {
+                        restService.getService().updateExerciseWithPairsById(_Exercise_Id, existingExercise).enqueue(new Callback<Exercise>() {
                             @Override
                             public void onResponse(Call<Exercise> call, Response<Exercise> response) {
-                                Toast.makeText(ExerciseDetailActivity.this, response.body().getName() + " updated.", Toast.LENGTH_LONG).show();
+                                if (response.code() == 204) {
+                                    Toast.makeText(ExerciseDetailActivity.this, "exercise updated.", Toast.LENGTH_LONG).show();
+                                }
                             }
 
                             @Override

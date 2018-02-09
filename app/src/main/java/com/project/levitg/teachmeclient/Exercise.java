@@ -27,7 +27,7 @@ public class Exercise {
     private String version;
 
     @SerializedName("id")
-    @Expose(serialize = false)
+    @Expose
     private String id;
 
     @SerializedName("text")
