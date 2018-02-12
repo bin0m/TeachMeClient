@@ -42,6 +42,10 @@ public class Exercise {
     @Expose
     private String image;
 
+    @SerializedName("sound")
+    @Expose
+    private String sound;
+
     @SerializedName("type")
     @Expose
     private String type;
@@ -132,6 +136,14 @@ public class Exercise {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSound() {
+        return sound;
+    }
+
+    public void setSound(String sound) {
+        this.sound = sound;
     }
 
     public String getQuestion() {
