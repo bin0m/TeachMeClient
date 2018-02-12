@@ -70,6 +70,10 @@ public class Exercise {
     @Expose
     private List<Pair> pairs;
 
+    @SerializedName("spaces")
+    @Expose
+    private List<Space> spaces;
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -188,6 +192,14 @@ public class Exercise {
 
     public void setPairs(List<Pair> pairs) {
         this.pairs = pairs;
+    }
+
+    public List<Space> getSpaces() {
+        return spaces;
+    }
+
+    public void setSpaces(List<Space> spaces) {
+        this.spaces = spaces;
     }
 
 }

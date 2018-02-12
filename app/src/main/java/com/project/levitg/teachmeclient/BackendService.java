@@ -269,6 +269,31 @@ public interface BackendService {
     @PATCH("api/v1.0/answer/{id}")
     Call<Answer> updateAnswerById(@Path("id") String id, @Body Answer answer);
 
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/space
+    @GET("api/v1.0/space")
+    Call<List<Space>> getSpace();
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/space/b04070c377c24b7295fda8ec8484dca5
+    //Get space record base on ID
+    @GET("api/v1.0/space/{id}")
+    Call<Space> getSpaceById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/space
+    //Add space record and post content in HTTP request BODY
+    @POST("api/v1.0/space")
+    Call<Space> addSpace(@Body Space space);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/space/b04070c377c24b7295fda8ec8484dca5
+    //Delete space record base on ID
+    @DELETE("api/v1.0/space/{id}")
+    Call<Void> deleteSpaceById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/space/b04070c377c24b7295fda8ec8484dca5
+    //Update space record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("api/v1.0/space/{id}")
+    Call<Space> updateSpaceById(@Path("id") String id, @Body Space space);
+
+
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
     @DELETE("api/v1.0/courses/{id}")
@@ -323,6 +348,11 @@ public interface BackendService {
     //Get pairs records by parent Exercise id
     @GET("api/v1.0/exercises/{id}/pairs")
     Call<List<Pair>> getPairsByExerciseId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/spaces
+    //Get spaces records by parent Exercise id
+    @GET("api/v1.0/exercises/{id}/spaces")
+    Call<List<Space>> getSpacesByExerciseId(@Path("id") String id);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises
     //Add exercise record and post content in HTTP request BODY

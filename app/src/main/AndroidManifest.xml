@@ -64,7 +64,9 @@
         <activity android:name=".PairsActivity" />
         <activity android:name=".PairDetailActivity" />
         <activity android:name=".AnswersActivity" />
-        <activity android:name=".AnswerDetailActivity"></activity>
+        <activity android:name=".AnswerDetailActivity" />
+        <activity android:name=".SpacesActivity" />
+        <activity android:name=".SpaceDetailActivity"></activity>
     </application>
 
 </manifest>

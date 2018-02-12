@@ -19,7 +19,8 @@ import retrofit2.Response;
 public class ExerciseDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     Button btnAdd, btnDelete, btnClose;
-    Button btnViewExerciseStudents, btnViewComments, btnViewPairs, btnViewAnswers;
+    Button btnViewExerciseStudents, btnViewComments;
+    Button btnViewPairs, btnViewAnswers, btnViewSpaces;
     EditText editTextName;
     EditText editLessonId;
     EditText editTextText;
@@ -42,6 +43,7 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
         btnViewComments = (Button) findViewById(R.id.btnViewComments);
         btnViewPairs = (Button) findViewById(R.id.btnViewPairs);
         btnViewAnswers = (Button) findViewById(R.id.btnViewAnswers);
+        btnViewSpaces = (Button) findViewById(R.id.btnViewSpaces);
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextText = (EditText) findViewById(R.id.editTextText);
@@ -58,6 +60,7 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
         btnViewComments.setOnClickListener(this);
         btnViewPairs.setOnClickListener(this);
         btnViewAnswers.setOnClickListener(this);
+        btnViewSpaces.setOnClickListener(this);
 
 
         _Exercise_Id = "";
@@ -125,6 +128,10 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
             Intent intent = new Intent(this, AnswersActivity.class);
             intent.putExtra("exercise_Id", _Exercise_Id);
             startActivity(intent);
+        } else if (v == findViewById(R.id.btnViewSpaces)) {
+            Intent intent = new Intent(this, SpacesActivity.class);
+            intent.putExtra("exercise_Id", _Exercise_Id);
+            startActivity(intent);
         } else if (findViewById(R.id.btnSave) == v) {
 
             if (_Exercise_Id == null || _Exercise_Id.isEmpty()) {
@@ -143,6 +150,9 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
 
                 List<Answer> answers = Arrays.asList(new Answer("some Title", false));
                 exercise.setAnswers(answers);
+
+                List<Space> spaces = Arrays.asList(new Space("some Value"));
+                exercise.setSpaces(spaces);
 
 
                 restService.getService().addExerciseWithInnerObjects(exercise).enqueue(new Callback<Exercise>() {
@@ -182,6 +192,9 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
 
                         List<Answer> answers = Arrays.asList(new Answer("after update title", true));
                         existingExercise.setAnswers(answers);
+
+                        List<Space> spaces = Arrays.asList(new Space("after update value"));
+                        existingExercise.setSpaces(spaces);
 
                         // Use Backend API to update exercise
                         restService.getService().replaceExerciseWithInnerObjectsById(_Exercise_Id, existingExercise).enqueue(new Callback<Exercise>() {

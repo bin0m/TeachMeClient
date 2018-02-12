@@ -186,18 +186,33 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btnViewPairs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next: View Pairs" />
-
-            <Button
                 android:id="@+id/btnViewAnswers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next: View Answers" />
+                android:layout_weight="1"
+                android:text="View Answers" />
+
+            <Button
+                android:id="@+id/btnViewPairs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="View Pairs" />
+
+            <Button
+                android:id="@+id/btnViewSpaces"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="View Spaces" />
 
         </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -207,12 +222,14 @@
                 android:id="@+id/btnViewComments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Next: View Comments" />
 
             <Button
                 android:id="@+id/btnViewExerciseStudents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Next: View ExerciseStudents" />
         </TableRow>
 
