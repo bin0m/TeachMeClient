@@ -293,6 +293,29 @@ public interface BackendService {
     @PATCH("api/v1.0/space/{id}")
     Call<Space> updateSpaceById(@Path("id") String id, @Body Space space);
 
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/studentcourse
+    @GET("api/v1.0/studentcourse")
+    Call<List<StudentCourse>> getStudentCourse();
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/studentcourse/b04070c377c24b7295fda8ec8484dca5
+    //Get studentcourse record base on ID
+    @GET("api/v1.0/studentcourse/{id}")
+    Call<StudentCourse> getStudentCourseById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/studentcourse
+    //Add studentcourse record and post content in HTTP request BODY
+    @POST("api/v1.0/studentcourse")
+    Call<StudentCourse> addStudentCourse(@Body StudentCourse studentcourse);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/studentcourse/b04070c377c24b7295fda8ec8484dca5
+    //Delete studentcourse record base on ID
+    @DELETE("api/v1.0/studentcourse/{id}")
+    Call<Void> deleteStudentCourseById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/studentcourse/b04070c377c24b7295fda8ec8484dca5
+    //Update studentcourse record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("api/v1.0/studentcourse/{id}")
+    Call<StudentCourse> updateStudentCourseById(@Path("id") String id, @Body StudentCourse studentcourse);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
@@ -353,6 +376,11 @@ public interface BackendService {
     //Get spaces records by parent Exercise id
     @GET("api/v1.0/exercises/{id}/spaces")
     Call<List<Space>> getSpacesByExerciseId(@Path("id") String id);
+
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/user/95777a45afc241dd87f3cae3274fe0af/studentcourses
+    //Get studentcourses records by parent User id
+    @GET("api/v1.0/users/{id}/studentcourses")
+    Call<List<StudentCourse>> getStudentCoursesByUserId(@Path("id") String id);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises
     //Add exercise record and post content in HTTP request BODY

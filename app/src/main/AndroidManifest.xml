@@ -66,7 +66,9 @@
         <activity android:name=".AnswersActivity" />
         <activity android:name=".AnswerDetailActivity" />
         <activity android:name=".SpacesActivity" />
-        <activity android:name=".SpaceDetailActivity"></activity>
+        <activity android:name=".SpaceDetailActivity" />
+        <activity android:name=".StudentCoursesActivity" />
+        <activity android:name=".StudentCourseDetailActivity"></activity>
     </application>
 
 </manifest>

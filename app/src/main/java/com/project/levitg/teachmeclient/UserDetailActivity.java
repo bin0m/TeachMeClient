@@ -18,8 +18,10 @@ import retrofit2.Response;
 
 public class UserDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete;
+    Button btnRegister;
+    Button btnDelete;
     Button btnClose;
+    Button btnViewStudentCourses;
     EditText editTextName;
     EditText editTextEmail;
     EditText editTextLogin;
@@ -35,6 +37,7 @@ public class UserDetailActivity extends AppCompatActivity implements android.vie
         btnRegister = (Button) findViewById(R.id.btnSave);
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnClose = (Button) findViewById(R.id.btnClose);
+        btnViewStudentCourses = (Button) findViewById(R.id.btnViewStudentCourses);
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -43,6 +46,7 @@ public class UserDetailActivity extends AppCompatActivity implements android.vie
         btnRegister.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnClose.setOnClickListener(this);
+        btnViewStudentCourses.setOnClickListener(this);
 
 
         _User_Id = "";
@@ -87,6 +91,10 @@ public class UserDetailActivity extends AppCompatActivity implements android.vie
             finish();
         } else if (v == findViewById(R.id.btnClose)) {
             finish();
+        } else if (v == findViewById(R.id.btnViewStudentCourses)) {
+            Intent intent = new Intent(this, StudentCoursesActivity.class);
+            intent.putExtra("user_Id", _User_Id);
+            startActivity(intent);
         } else if (findViewById(R.id.btnSave) == v) {
 
             if (_User_Id == null || _User_Id.isEmpty()) {
