@@ -62,8 +62,12 @@ public class Exercise {
     @Expose
     private String lessonId;
 
+    @SerializedName("answers")
+    @Expose
+    private List<Answer> answers;
+
     @SerializedName("pairs")
-    @Expose(serialize = true)
+    @Expose
     private List<Pair> pairs;
 
     public boolean isDeleted() {
@@ -168,6 +172,14 @@ public class Exercise {
 
     public void setLessonId(String lessonId) {
         this.lessonId = lessonId;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
     public List<Pair> getPairs() {

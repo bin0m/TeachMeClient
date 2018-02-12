@@ -62,7 +62,9 @@
         </activity>
         <activity android:name=".AzureTestLoginActivity" />
         <activity android:name=".PairsActivity" />
-        <activity android:name=".PairDetailActivity"></activity>
+        <activity android:name=".PairDetailActivity" />
+        <activity android:name=".AnswersActivity" />
+        <activity android:name=".AnswerDetailActivity"></activity>
     </application>
 
 </manifest>

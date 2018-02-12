@@ -19,7 +19,7 @@ import retrofit2.Response;
 public class ExerciseDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
     Button btnAdd, btnDelete, btnClose;
-    Button btnViewExerciseStudents, btnViewComments, btnViewPairs;
+    Button btnViewExerciseStudents, btnViewComments, btnViewPairs, btnViewAnswers;
     EditText editTextName;
     EditText editLessonId;
     EditText editTextText;
@@ -41,6 +41,7 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
         btnViewExerciseStudents = (Button) findViewById(R.id.btnViewExerciseStudents);
         btnViewComments = (Button) findViewById(R.id.btnViewComments);
         btnViewPairs = (Button) findViewById(R.id.btnViewPairs);
+        btnViewAnswers = (Button) findViewById(R.id.btnViewAnswers);
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextText = (EditText) findViewById(R.id.editTextText);
@@ -56,6 +57,7 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
         btnViewExerciseStudents.setOnClickListener(this);
         btnViewComments.setOnClickListener(this);
         btnViewPairs.setOnClickListener(this);
+        btnViewAnswers.setOnClickListener(this);
 
 
         _Exercise_Id = "";
@@ -119,6 +121,10 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
             Intent intent = new Intent(this, PairsActivity.class);
             intent.putExtra("exercise_Id", _Exercise_Id);
             startActivity(intent);
+        } else if (v == findViewById(R.id.btnViewAnswers)) {
+            Intent intent = new Intent(this, AnswersActivity.class);
+            intent.putExtra("exercise_Id", _Exercise_Id);
+            startActivity(intent);
         } else if (findViewById(R.id.btnSave) == v) {
 
             if (_Exercise_Id == null || _Exercise_Id.isEmpty()) {
@@ -135,8 +141,11 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
                 List<Pair> pairs = Arrays.asList(new Pair("some Value", "some Equal"));
                 exercise.setPairs(pairs);
 
+                List<Answer> answers = Arrays.asList(new Answer("some Title", false));
+                exercise.setAnswers(answers);
 
-                restService.getService().addExerciseWithPairs(exercise).enqueue(new Callback<Exercise>() {
+
+                restService.getService().addExerciseWithInnerObjects(exercise).enqueue(new Callback<Exercise>() {
                     @Override
                     public void onResponse(Call<Exercise> call, Response<Exercise> response) {
                         if (response.code() == 201) {
@@ -171,8 +180,11 @@ public class ExerciseDetailActivity extends AppCompatActivity implements android
                         List<Pair> pairs = Arrays.asList(new Pair("after update value", "after update equal"));
                         existingExercise.setPairs(pairs);
 
+                        List<Answer> answers = Arrays.asList(new Answer("after update title", true));
+                        existingExercise.setAnswers(answers);
+
                         // Use Backend API to update exercise
-                        restService.getService().updateExerciseWithPairsById(_Exercise_Id, existingExercise).enqueue(new Callback<Exercise>() {
+                        restService.getService().replaceExerciseWithInnerObjectsById(_Exercise_Id, existingExercise).enqueue(new Callback<Exercise>() {
                             @Override
                             public void onResponse(Call<Exercise> call, Response<Exercise> response) {
                                 if (response.code() == 204) {

@@ -245,6 +245,30 @@ public interface BackendService {
     @PATCH("api/v1.0/pair/{id}")
     Call<Pair> updatePairById(@Path("id") String id, @Body Pair pair);
 
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/answer
+    @GET("api/v1.0/answer")
+    Call<List<Answer>> getAnswer();
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/answer/b04070c377c24b7295fda8ec8484dca5
+    //Get answer record base on ID
+    @GET("api/v1.0/answer/{id}")
+    Call<Answer> getAnswerById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/answer
+    //Add answer record and post content in HTTP request BODY
+    @POST("api/v1.0/answer")
+    Call<Answer> addAnswer(@Body Answer answer);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/answer/b04070c377c24b7295fda8ec8484dca5
+    //Delete answer record base on ID
+    @DELETE("api/v1.0/answer/{id}")
+    Call<Void> deleteAnswerById(@Path("id") String id);
+
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/answer/b04070c377c24b7295fda8ec8484dca5
+    //Update answer record with PATCH (only delta is updated) and post content in HTTP request BODY
+    @PATCH("api/v1.0/answer/{id}")
+    Call<Answer> updateAnswerById(@Path("id") String id, @Body Answer answer);
+
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
     @DELETE("api/v1.0/courses/{id}")
@@ -290,6 +314,11 @@ public interface BackendService {
     @GET("api/v1.0/comments/{id}/commentratings")
     Call<List<CommentRating>> getCommentRatingsByCommentId(@Path("id") String id);
 
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/answers
+    //Get answers records by parent Exercise id
+    @GET("api/v1.0/exercises/{id}/answers")
+    Call<List<Answer>> getAnswersByExerciseId(@Path("id") String id);
+
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af/pairs
     //Get pairs records by parent Exercise id
     @GET("api/v1.0/exercises/{id}/pairs")
@@ -298,12 +327,12 @@ public interface BackendService {
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises
     //Add exercise record and post content in HTTP request BODY
     @POST("api/v1.0/exercises")
-    Call<Exercise> addExerciseWithPairs(@Body Exercise exercise);
+    Call<Exercise> addExerciseWithInnerObjects(@Body Exercise exercise);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises
-    //Add exercise record and post content in HTTP request BODY
+    //Replace exercise record and post content in HTTP request BODY
     @PUT("api/v1.0/exercises/{id}")
-    Call<Exercise> updateExerciseWithPairsById(@Path("id") String id, @Body Exercise exercise);
+    Call<Exercise> replaceExerciseWithInnerObjectsById(@Path("id") String id, @Body Exercise exercise);
 
 }
 

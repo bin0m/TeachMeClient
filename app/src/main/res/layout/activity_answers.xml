@@ -7,13 +7,13 @@
     android:orientation="vertical"
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
-    tools:context="com.project.levitg.teachmeclient.PairActivity">
+    tools:context="com.project.levitg.teachmeclient.AnswerActivity">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Choose pair:"
+        android:text="Choose answer:"
         android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,7 +43,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Pair"
+            android:text="Add Answer"
             android:id="@+id/btnAdd"
             android:layout_alignBottom="@+id/listView"
             android:layout_toRightOf="@+id/btnGetAll"
