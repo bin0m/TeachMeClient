@@ -85,8 +85,8 @@ public class TeachersActivity extends AppCompatActivity implements android.view.
                              ArrayList<HashMap<String, String>> userList = new ArrayList<HashMap<String, String>>();
 
                              for (int i = 0; i < response.body().size(); i++) {
-                                 String userRole = String.valueOf(response.body().get(i).getUserRole());
-                                 if (userRole.equals("Teacher")) {
+                                 GlobalConstants.UserRole userRole = response.body().get(i).getUserRole();
+                                 if (userRole == GlobalConstants.UserRole.TEACHER) {
                                      HashMap<String, String> user = new HashMap<String, String>();
                                      user.put("id", String.valueOf(response.body().get(i).getId()));
                                      user.put("name", String.valueOf(response.body().get(i).getFullName()));

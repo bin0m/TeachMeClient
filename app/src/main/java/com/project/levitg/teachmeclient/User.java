@@ -61,7 +61,7 @@ public class User {
     // 2 - Admin
     @SerializedName("userRole")
     @Expose
-    private String userRole;
+    private int userRole;
 
     @SerializedName("avatarPath")
     @Expose
@@ -159,12 +159,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public GlobalConstants.UserRole getUserRole() {
+        return GlobalConstants.UserRole.valueOf(userRole);
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setUserRole(GlobalConstants.UserRole userRole) {
+        this.userRole = userRole.getValue();
     }
 
     public String getAvatarPath() {

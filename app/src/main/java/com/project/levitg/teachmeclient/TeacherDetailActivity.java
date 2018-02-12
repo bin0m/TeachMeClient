@@ -105,7 +105,7 @@ public class TeacherDetailActivity extends AppCompatActivity implements android.
 
                 //TODO: Add UI fields
                 user.setPassword("hardcoded Password");
-                user.setUserRole("Student");
+                user.setUserRole(GlobalConstants.UserRole.STUDENT);
 
                 user.setCompletedCoursesCount(0);
                 SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
