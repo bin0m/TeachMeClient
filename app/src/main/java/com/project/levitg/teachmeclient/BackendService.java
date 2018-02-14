@@ -318,7 +318,7 @@ public interface BackendService {
     Call<StudentCourse> updateStudentCourseById(@Path("id") String id, @Body StudentCourse studentcourse);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/courses/b04070c377c24b7295fda8ec8484dca5
-    //Delete section record including all its children( lessons)
+    //Delete course record including all its children( lessons)
     @DELETE("api/v1.0/courses/{id}")
     Call<Void> deleteCourseAndChildrenById(@Path("id") String id);
 
@@ -377,7 +377,7 @@ public interface BackendService {
     @GET("api/v1.0/exercises/{id}/spaces")
     Call<List<Space>> getSpacesByExerciseId(@Path("id") String id);
 
-    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/user/95777a45afc241dd87f3cae3274fe0af/studentcourses
+    //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/users/95777a45afc241dd87f3cae3274fe0af/studentcourses
     //Get studentcourses records by parent User id
     @GET("api/v1.0/users/{id}/studentcourses")
     Call<List<StudentCourse>> getStudentCoursesByUserId(@Path("id") String id);
@@ -387,7 +387,7 @@ public interface BackendService {
     @POST("api/v1.0/exercises")
     Call<Exercise> addExerciseWithInnerObjects(@Body Exercise exercise);
 
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises
+    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/exercises/95777a45afc241dd87f3cae3274fe0af
     //Replace exercise record and post content in HTTP request BODY
     @PUT("api/v1.0/exercises/{id}")
     Call<Exercise> replaceExerciseWithInnerObjectsById(@Path("id") String id, @Body Exercise exercise);
