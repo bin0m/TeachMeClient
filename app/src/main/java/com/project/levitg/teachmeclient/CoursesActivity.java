@@ -81,7 +81,7 @@ public class CoursesActivity extends AppCompatActivity implements android.view.V
 
 
     private void refreshScreen_SimpleWay() {
-        Call<List<Course>> call = restClient.getService().getCoursesByUserId(_Teacher_Id);
+        Call<List<Course>> call = restClient.getService().getCoursesByUserId(_Teacher_Id, true);
         call.enqueue(new Callback<List<Course>>() {
                          @Override
                          public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {

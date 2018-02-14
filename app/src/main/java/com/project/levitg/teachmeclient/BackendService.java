@@ -330,7 +330,7 @@ public interface BackendService {
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/users/95777a45afc241dd87f3cae3274fe0af/courses
     //Get courses records by parent User id
     @GET("api/v1.0/users/{id}/courses")
-    Call<List<Course>> getCoursesByUserId(@Path("id") String id);
+    Call<List<Course>> getCoursesByUserId(@Path("id") String id, @Query("isTeacher") boolean isTeacher);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/courses/95777a45afc241dd87f3cae3274fe0af/sections
     //Get sections records by parent Course id
