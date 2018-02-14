@@ -45,6 +45,28 @@
             android:text="Days"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="29dp"
+            android:text="Description"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="29dp"
+            android:text="Keywords"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
         <EditText
             android:id="@+id/editTextName"
@@ -67,6 +89,28 @@
             android:layout_toRightOf="@+id/textView2"
             android:ems="10"
             android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignEnd="@+id/editTextDays"
+            android:layout_alignRight="@+id/editTextDays"
+            android:layout_toRightOf="@+id/textView3"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/editTextKeywords"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_alignEnd="@+id/editTextDescription"
+            android:layout_alignRight="@+id/editTextDescription"
+            android:layout_toRightOf="@+id/textView5"
+            android:ems="10"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btnSave"

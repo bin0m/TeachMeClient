@@ -18,11 +18,17 @@ import retrofit2.Response;
 
 public class CourseDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete, btnDeleteFull;
-    Button btnClose, btnViewSections;
+    Button btnRegister;
+    Button btnDelete;
+    Button btnDeleteFull;
+    Button btnClose;
+    Button btnViewSections;
     EditText editTextName;
     EditText editTextDays;
-    private String _Course_Id, _Teacher_Id;
+    EditText editTextDescription;
+    EditText editTextKeywords;
+    private String _Course_Id;
+    private String _Teacher_Id;
     RestClient restService;
 
     @Override
@@ -39,6 +45,8 @@ public class CourseDetailActivity extends AppCompatActivity implements android.v
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextDays = (EditText) findViewById(R.id.editTextDays);
+        editTextDescription = (EditText) findViewById(R.id.editTextDescription);
+        editTextKeywords = (EditText) findViewById(R.id.editTextKeywords);
 
         btnRegister.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
@@ -61,6 +69,9 @@ public class CourseDetailActivity extends AppCompatActivity implements android.v
                     Course course = response.body();
                     editTextName.setText(course.getName());
                     editTextDays.setText(String.valueOf(course.getDays()));
+                    editTextDescription.setText(course.getDescription());
+                    editTextKeywords.setText(course.getKeywords());
+
                 }
 
                 @Override
@@ -125,6 +136,8 @@ public class CourseDetailActivity extends AppCompatActivity implements android.v
                 Course course = new Course();
                 course.setName(editTextName.getText().toString());
                 course.setDays(Integer.parseInt(editTextDays.getText().toString()));
+                course.setDescription(editTextDescription.getText().toString());
+                course.setKeywords(editTextKeywords.getText().toString());
                 course.setUserId(_Teacher_Id);
 
                 restService.getService().addCourse(course).enqueue(new Callback<Course>() {
@@ -154,6 +167,8 @@ public class CourseDetailActivity extends AppCompatActivity implements android.v
                         Course existingCourse = response.body();
                         existingCourse.setName(editTextName.getText().toString());
                         existingCourse.setDays(Integer.parseInt(editTextDays.getText().toString()));
+                        existingCourse.setDescription(editTextDescription.getText().toString());
+                        existingCourse.setKeywords(editTextKeywords.getText().toString());
 
                         // Use Backend API to update course
                         restService.getService().updateCourseById(_Course_Id, existingCourse).enqueue(new Callback<Course>() {

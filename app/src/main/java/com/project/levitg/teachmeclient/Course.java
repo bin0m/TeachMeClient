@@ -37,6 +37,14 @@ public class Course {
     @Expose
     private String name;
 
+    @SerializedName("description")
+    @Expose
+    private String description;
+
+    @SerializedName("keywords")
+    @Expose
+    private String keywords;
+
     @SerializedName("userId")
     @Expose
     private String userId;
@@ -96,6 +104,23 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
 
     public String getUserId() {
         return userId;
