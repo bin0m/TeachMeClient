@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 public class CommentRatingDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete, btnDeleteFull;
+    Button btnRegister, btnDelete;
     Button btnClose;
     EditText editTextUserId;
     EditText editTextUserName;

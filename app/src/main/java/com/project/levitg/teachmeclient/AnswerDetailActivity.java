@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class AnswerDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete, btnDeleteFull;
+    Button btnRegister, btnDelete;
     Button btnClose;
     EditText editTextTitle;
     CheckBox checkBoxIsRight;

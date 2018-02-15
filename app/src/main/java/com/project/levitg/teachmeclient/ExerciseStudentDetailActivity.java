@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class ExerciseStudentDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete, btnDeleteFull;
+    Button btnRegister, btnDelete;
     Button btnClose;
     EditText editTextStudentId;
     EditText editTextStudentAnswer;

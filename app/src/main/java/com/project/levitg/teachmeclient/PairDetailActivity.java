@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class PairDetailActivity extends AppCompatActivity implements android.view.View.OnClickListener {
 
-    Button btnRegister, btnDelete, btnDeleteFull;
+    Button btnRegister, btnDelete;
     Button btnClose;
     EditText editTextValue;
     EditText editTextEqual;

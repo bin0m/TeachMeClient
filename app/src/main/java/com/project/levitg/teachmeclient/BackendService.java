@@ -82,11 +82,6 @@ public interface BackendService {
     Call<Course> addCourse(@Body Course course);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/course/b04070c377c24b7295fda8ec8484dca5
-    //Delete course record base on ID
-    @DELETE("api/v1.0/course/{id}")
-    Call<Void> deleteCourseById(@Path("id") String id);
-
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/course/b04070c377c24b7295fda8ec8484dca5
     //Update course record with PATCH (only delta is updated) and post content in HTTP request BODY
     @PATCH("api/v1.0/course/{id}")
     Call<Course> updateCourseById(@Path("id") String id, @Body Course course);
@@ -104,11 +99,6 @@ public interface BackendService {
     //Add section record and post content in HTTP request BODY
     @POST("api/v1.0/section")
     Call<Section> addSection(@Body Section section);
-
-    //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/section/b04070c377c24b7295fda8ec8484dca5
-    //Delete section record base on ID
-    @DELETE("api/v1.0/section/{id}")
-    Call<Void> deleteSectionById(@Path("id") String id);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/section/b04070c377c24b7295fda8ec8484dca5
     //Update section record with PATCH (only delta is updated) and post content in HTTP request BODY
@@ -320,12 +310,12 @@ public interface BackendService {
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/courses/b04070c377c24b7295fda8ec8484dca5
     //Delete course record including all its children( lessons)
     @DELETE("api/v1.0/courses/{id}")
-    Call<Void> deleteCourseAndChildrenById(@Path("id") String id);
+    Call<Void> deleteCourseById(@Path("id") String id);
 
     //i.e. http://teachmeserv.azurewebsites.net/api/v1.0/sections/b04070c377c24b7295fda8ec8484dca5
     //Delete section record including all its children( lessons)
     @DELETE("api/v1.0/sections/{id}")
-    Call<Void> deleteSectionAndChildrenById(@Path("id") String id);
+    Call<Void> deleteSectionById(@Path("id") String id);
 
     //i.e.  http://teachmeserv.azurewebsites.net/api/v1.0/users/95777a45afc241dd87f3cae3274fe0af/courses
     //Get courses records by parent User id
