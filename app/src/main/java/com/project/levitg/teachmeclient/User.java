@@ -39,10 +39,6 @@ public class User {
     @Expose
     private int completedCoursesCount;
 
-    @SerializedName("password")
-    @Expose
-    private String password;
-
     @SerializedName("login")
     @Expose
     private String login;
@@ -125,14 +121,6 @@ public class User {
 
     public void setCompletedCoursesCount(int completedCoursesCount) {
         this.completedCoursesCount = completedCoursesCount;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getLogin() {

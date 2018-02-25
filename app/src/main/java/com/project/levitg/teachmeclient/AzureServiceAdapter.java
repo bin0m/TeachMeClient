@@ -24,8 +24,6 @@ public class AzureServiceAdapter {
     public static void Initialize(Context context) throws MalformedURLException {
         if (mInstance == null) {
             mInstance = new AzureServiceAdapter(context);
-        } else {
-            throw new IllegalStateException("AzureServiceAdapter is already initialized");
         }
     }
 

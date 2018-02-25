@@ -382,5 +382,10 @@ public interface BackendService {
     @PUT("api/v1.0/exercises/{id}")
     Call<Exercise> replaceExerciseWithInnerObjectsById(@Path("id") String id, @Body Exercise exercise);
 
+    //i.e. https://teachmetest.azurewebsites.net/api/v1.0/auth/login
+    //login
+    @POST("api/v1.0/auth/login")
+    Call<LoginResult> login(@Body LoginViewModel loginViewModel);
+
 }
 

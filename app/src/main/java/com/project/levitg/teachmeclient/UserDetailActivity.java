@@ -106,7 +106,6 @@ public class UserDetailActivity extends AppCompatActivity implements android.vie
                 user.setLogin(editTextLogin.getText().toString());
 
                 //TODO: Add UI fields
-                user.setPassword("hardcoded Password");
                 user.setUserRole(GlobalConstants.UserRole.STUDENT);
 
                 user.setCompletedCoursesCount(0);

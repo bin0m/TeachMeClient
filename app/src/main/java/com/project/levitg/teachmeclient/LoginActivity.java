@@ -41,12 +41,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceActivityResult;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceJsonTable;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -54,6 +60,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    RestClient restService;
 
     /**
      * Mobile Service Client reference
@@ -92,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        restService = new RestClient();
+
         try {
             AzureServiceAdapter.Initialize(this);
         } catch (MalformedURLException e) {
@@ -99,12 +109,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } catch (Exception e) {
             createAndShowDialog(e, "Error");
         }
-
-//        try {
-//            mClient = new MobileServiceClient("https://teachmeserv.azurewebsites.net", this);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
 
 
         // Set up the login form.
@@ -239,25 +243,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        LoginViewModel loginViewModel = new LoginViewModel();
+        loginViewModel.setEmail(mEmailView.getText().toString());
+        loginViewModel.setPassword(mPasswordView.getText().toString());
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (!TextUtils.isEmpty(loginViewModel.getPassword()) && !isPasswordValid(loginViewModel.getPassword())) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(loginViewModel.getEmail())) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(loginViewModel.getEmail())) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -271,19 +276,39 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+
+            restService.getService().login(loginViewModel).enqueue(new Callback<LoginResult>() {
+                @Override
+                public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+                    showProgress(false);
+                    if (response.code() == 200) {
+                        String authToken = response.body().getAuthenticationToken();
+                        User user = response.body().getUser();
+                        createAndShowDialog("Hello, " + user.getFullName(), "Logged In");
+                    } else {
+                        createAndShowDialog(response.errorBody().toString(), "Failed to log in");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResult> call, Throwable t) {
+                    showProgress(false);
+                    Toast.makeText(LoginActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+            //mAuthTask = new UserLoginTask(email, password);
+            //mAuthTask.execute((Void) null);
         }
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
+        //TODO: Replace this with real logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        //TODO: Replace this with real logic
+        return password.length() > 6;
     }
 
     /**

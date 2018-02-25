@@ -104,7 +104,6 @@ public class TeacherDetailActivity extends AppCompatActivity implements android.
                 user.setLogin(editTextLogin.getText().toString());
 
                 //TODO: Add UI fields
-                user.setPassword("hardcoded Password");
                 user.setUserRole(GlobalConstants.UserRole.STUDENT);
 
                 user.setCompletedCoursesCount(0);
