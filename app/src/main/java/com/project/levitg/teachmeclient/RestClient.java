@@ -17,22 +17,40 @@ public class RestClient {
     private retrofit2.Retrofit restAdapter;
 
     public RestClient() {
+        InitializeBackendService(null);
+    }
+
+    public RestClient(final String authToken) {
+        InitializeBackendService(authToken);
+    }
+
+    private void InitializeBackendService(final String authToken) {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient.Builder okHttpClient = new OkHttpClient
+                .Builder()
+                .addInterceptor(interceptor);
+
+
+        if (authToken != null) {
+            // add authorization token header to every Http request
+            AuthenticationInterceptor authenticationInterceptor =
+                    new AuthenticationInterceptor(authToken);
+
+            if (!okHttpClient.interceptors().contains(authenticationInterceptor)) {
+                okHttpClient.addInterceptor(interceptor);
+            }
+        }
+
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient okHttpClient = new OkHttpClient
-                .Builder()
-                .addInterceptor(interceptor)
-                .build();
-
         restAdapter = new retrofit2.Retrofit.Builder()
                 .baseUrl(GlobalConstants.BACKEND_URL)
-                .client(okHttpClient)
+                .client(okHttpClient.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -42,4 +60,7 @@ public class RestClient {
     public BackendService getService() {
         return backendService;
     }
+
+
 }
+
