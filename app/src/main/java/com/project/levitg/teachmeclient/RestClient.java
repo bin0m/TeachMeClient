@@ -39,7 +39,7 @@ public class RestClient {
                     new AuthenticationInterceptor(authToken);
 
             if (!okHttpClient.interceptors().contains(authenticationInterceptor)) {
-                okHttpClient.addInterceptor(interceptor);
+                okHttpClient.addInterceptor(authenticationInterceptor);
             }
         }
 

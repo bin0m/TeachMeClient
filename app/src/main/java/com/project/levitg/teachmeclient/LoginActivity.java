@@ -73,18 +73,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@ex.com:hello", "bar@ex.com:1234"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
-
     // You can choose any unique number here to differentiate auth providers from each other. Note this is the same code at login() and onActivityResult().
     public static final int FACEBOOK_LOGIN_REQUEST_CODE = 1;
     public static final int GOOGLE_LOGIN_REQUEST_CODE = 2;
@@ -109,7 +97,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } catch (Exception e) {
             createAndShowDialog(e, "Error");
         }
-
 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -234,10 +221,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -282,9 +265,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                     showProgress(false);
                     if (response.code() == 200) {
-                        String authToken = response.body().getAuthenticationToken();
                         User user = response.body().getUser();
-                        createAndShowDialog("Hello, " + user.getFullName(), "Logged In");
+                        Toast.makeText(LoginActivity.this, "Hello, " + user.getFullName(), Toast.LENGTH_LONG).show();
+
+                        AuthTokenCacheManager.cacheUserToken(getApplicationContext(), response.body());
+                        if (user.getUserRole() == GlobalConstants.UserRole.TEACHER) {
+                            Intent intent = new Intent(getApplicationContext(), CoursesActivity.class);
+                            intent.putExtra("teacher_Id", user.getId());
+                            startActivity(intent);
+                        } else if (user.getUserRole() == GlobalConstants.UserRole.STUDENT) {
+                            //TODO: Start student activity
+                        }
+
                     } else {
                         createAndShowDialog(response.errorBody().toString(), "Failed to log in");
                     }
@@ -296,8 +288,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Toast.makeText(LoginActivity.this, t.getMessage().toString(), Toast.LENGTH_LONG).show();
                 }
             });
-            //mAuthTask = new UserLoginTask(email, password);
-            //mAuthTask.execute((Void) null);
         }
     }
 
@@ -426,61 +416,5 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
 }
 

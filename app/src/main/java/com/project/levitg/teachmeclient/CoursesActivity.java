@@ -32,8 +32,13 @@ public class CoursesActivity extends AppCompatActivity implements android.view.V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        restClient = new RestClient();
         setContentView(R.layout.activity_courses);
+
+        CachedUser cachedUser = AuthTokenCacheManager.loadUserTokenCache(this);
+        restClient = new RestClient(cachedUser.getAuthToken());
+
+        TextView titleText = (TextView) findViewById(R.id.textView4);
+        titleText.setText(String.format("Hello %s!", cachedUser.getUserName()));
 
         btnGetAll = (Button) findViewById(R.id.btnGetAll);
         btnGetAll.setOnClickListener(this);
@@ -81,6 +86,7 @@ public class CoursesActivity extends AppCompatActivity implements android.view.V
 
 
     private void refreshScreen_SimpleWay() {
+
         Call<List<Course>> call = restClient.getService().getCoursesByUserId(_Teacher_Id, true);
         call.enqueue(new Callback<List<Course>>() {
                          @Override
