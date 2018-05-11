@@ -401,7 +401,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 MobileServiceActivityResult result = AzureServiceAdapter.getInstance().getClient().onActivityResult(data);
                 if (result.isLoggedIn()) {
                     // login succeeded
-                    createAndShowDialog(String.format("You are now logged in - %1$2s", AzureServiceAdapter.getInstance().getClient().getCurrentUser().getUserId()), "Success");
+                    String userId = AzureServiceAdapter.getInstance().getClient().getCurrentUser().getUserId();
+                    String token = AzureServiceAdapter.getInstance().getClient().getCurrentUser().getAuthenticationToken();
+                    createAndShowDialog(String.format("You are now logged in.\n %s,\n AuthenticationToken: %s", userId, token), "Success");
                     // Get the table instance to use.
                     // mToDoTable =  AzureServiceAdapter.getInstance().getClient().getTable(Course.class);
                 } else {
